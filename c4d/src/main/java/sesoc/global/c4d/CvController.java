@@ -69,5 +69,4 @@ public class CvController {
 		model.addAttribute("user", user);
 		return "cv_edit";
 	}
-	
 }

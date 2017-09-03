@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sesoc.global.c4d.dao.StatsDAO">
+<select id ="getFieldCnt" resultType="map">
+	 select  count(decode(field,'Web','1')) as Web,
+	 		count(decode(field,'Mobile','1')) as Mobile,
+	 		count(decode(field,'Application','1')) as Application
+	 from users
+	</select>
+	<select id ="getLangCnt" resultType="map">
+	 select  count(decode(language,'C','1')) as C,
+	 		count(decode(language,'PHP','1')) as PHP,
+	 		count(decode(language,'JAVA','1')) as JAVA
+	 from users
+	</select>
+	
+	<select id="getWorkYearsByID" resultType="int" parameterType="string">
+	select MONTHS_BETWEEN( career_enddate,career_startdate)   
+ 	 FROM career
+ 	 where career_userid=#{id}
+	</select>
+	
+	<select id="getWorkYearsAll" resultType="int" parameterType="string">
+	select   round(avg(MONTHS_BETWEEN( career_enddate,career_startdate)))
+ 	 FROM career 
+ 	 group by career_userid
+	</select>
+	
+	<select id="getSumWorkYearsByID" resultType="int" parameterType="string">
+	select sum(MONTHS_BETWEEN( career_enddate,career_startdate))
+ 	 FROM career
+ 	 group by career_userid
+ 	 having career_userid=#{id}
+	</select>
+	
+	<select id="getSumWorkYearsAll" resultType="int" parameterType="string">
+	select sum(MONTHS_BETWEEN( career_enddate,career_startdate))
+ 	 FROM career
+ 	 group by career_userid 
+	</select>
+
+</mapper> 
+  

@@ -25,7 +25,7 @@ public class HomeController {
 	SqlSession ss;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
+	public String index(HttpSession session) {
 		return "index";
 	}
 	

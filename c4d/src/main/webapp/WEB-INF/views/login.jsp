@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<<<<<<< HEAD
 <!-- 20170901 jenna kim -->
 <script src="resources/jquery-3.2.1.min.js"></script>
 <script>
@@ -91,6 +92,7 @@ $(document).ready(function () {
 	<div>
 		<h1><span class="editText" id="id1">노는게 제일좋앙</span></h1>
 		<span><p>모여라 칭구들</p></span>
+</head>
 	</div>
 </body>
 </html>
