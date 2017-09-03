@@ -107,13 +107,11 @@ CREATE TABLE users
 	name varchar2(20) NOT NULL,
 	email varchar2(40) NOT NULL,
 	birthdate date,
-	age number,
 	address varchar2(300) ,
 	tel varchar2(30),
 	gender char(3),
 	field varchar2(20),
 	language varchar2(20),
-	picture varchar2(500),
 	PRIMARY KEY (id)
 );
 

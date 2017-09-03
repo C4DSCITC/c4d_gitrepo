@@ -4,9 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
  <typeAliases> 
- 	<typeAlias type="sesoc.global.c4d.vo.Users" alias="Users"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.User" alias="User"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Edu" alias="Edu"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Career" alias="Career"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Career_simple" alias="Career_simple"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Licc" alias="Licc"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Cvd" alias="Cvd"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Project" alias="Project"/>
  </typeAliases>
   <mappers> 
+  	<mapper resource="/mappers/cv_mapper.xml"/>
   	<mapper resource="mappers/statsMapper.xml"></mapper>
+  	<mapper resource="mappers/careerMapper.xml"></mapper>
+  	<mapper resource="mappers/projectMapper.xml"></mapper>
   </mappers>
 </configuration>

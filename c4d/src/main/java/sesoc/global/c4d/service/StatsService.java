@@ -4,5 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface StatsService {
-	public Map<String, Object> getPercentage();
+	public List<Map<String, Object>> getPercentage(String what);
+
+	public float getAvgWorkYears(String loginedID);
+ 
 }

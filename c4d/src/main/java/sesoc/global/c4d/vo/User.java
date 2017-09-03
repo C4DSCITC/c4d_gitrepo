@@ -1,34 +1,38 @@
 package sesoc.global.c4d.vo;
 
-import java.util.Date;
-
-public class Users {
+public class User {
 	private String id;
 	private String password;
 	private String name;
 	private String email;
-	private Date birthdate;
+	private String birthdate;
+	private int age;
 	private String address;
 	private String tel;
 	private String gender;
 	private String field;
 	private String language;
+	private String image;
 	
-	public Users(){}
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
 
-	public Users(String id, String password, String name, String email, Date birthdate, String address, String tel,
-			String gender, String field, String language) {
+	public User(String id, String password, String name, String email, String birthdate, int age, String address,
+			String tel, String gender, String field, String language, String image) {
 		super();
 		this.id = id;
 		this.password = password;
 		this.name = name;
 		this.email = email;
 		this.birthdate = birthdate;
+		this.age = age;
 		this.address = address;
 		this.tel = tel;
 		this.gender = gender;
 		this.field = field;
 		this.language = language;
+		this.image = image;
 	}
 
 	public String getId() {
@@ -63,12 +67,20 @@ public class Users {
 		this.email = email;
 	}
 
-	public Date getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	public String getAddress() {
@@ -111,11 +123,19 @@ public class Users {
 		this.language = language;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@Override
 	public String toString() {
-		return "Users [id=" + id + ", password=" + password + ", name=" + name + ", email=" + email + ", birthdate="
-				+ birthdate + ", address=" + address + ", tel=" + tel + ", gender=" + gender + ", field=" + field
-				+ ", language=" + language + "]";
-	};
+		return "User [id=" + id + ", password=" + password + ", name=" + name + ", email=" + email + ", birthdate="
+				+ birthdate + ", age=" + age + ", address=" + address + ", tel=" + tel + ", gender=" + gender
+				+ ", field=" + field + ", language=" + language + ", image=" + image + "]";
+	}
 	
 }

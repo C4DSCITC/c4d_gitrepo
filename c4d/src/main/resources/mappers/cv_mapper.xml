@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sesoc.global.c4d.dao.CvDAO">
+
+<!-- 로그인 (준환이 부분 오면 삭제 예정) -->
+<select id="loginOne" parameterType="map" resultType="User">
+	select *
+	from users
+	where id = #{id}
+	and password = #{password}
+</select>
+
+<!-- 인쇄용 이력서에 뿌릴 개인 정보 불러오기-->
+<select id="findOne" parameterType="String" resultType="User">
+	select name, email, to_char(birthdate, 'yyyy-mm-dd') birthdate, address, tel, gender
+	from users
+	where id = #{id}
+</select>
+
+<!-- 인쇄용 이력서폼에 입력한 내용 DB에 저장하기 -->
+<!-- <update id="cv_save" parameterType="Cvd">
+	update education set
+	edu_num= #{edu_num}
+	, edu_userid= #{edu_userid}
+	, edu_school= #{edu_school}
+	, edu_major= #{edu_major}
+	, edu_degree= #{edu_degree}
+	, edu_gpa= #{edu_gpa}
+	, edu_startdate= #{edu_startdate}
+	, edu_enddate= #{edu_enddate}
+	where edu_userid=#{edu_userid}
+</update> -->
+
+</mapper> 
+  
