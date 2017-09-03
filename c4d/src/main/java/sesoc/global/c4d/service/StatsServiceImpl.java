@@ -57,13 +57,37 @@ public class StatsServiceImpl implements StatsService{
 	
 	@Override
 	public float getAvgWorkYears(String loginedID) {
-		List<Integer> workMonths=  sdao.getWorkYearsByID(loginedID); 
+		
+		List<Integer> workMonths= null;
+		if(loginedID.equals(""))
+			workMonths=sdao.getWorkYearsAll();
+		else
+			workMonths=sdao.getWorkYearsByID(loginedID); 
+		
 		int sum=0;
 		for(int workmonth : workMonths){
 			sum+=workmonth;
 		}
 		float result =(float) ((float) Math.round(((float)sum/((float)(workMonths.size()*12)))*100d) / 100d);
 		return result;
+	}
+
+
+	@Override
+	public float getSumWorkYears(String loginedID) {
+		int workMonths= 0;
+		List<Integer> workMonthslist=null;
+		if(loginedID.equals("")){
+			int sum=0;
+			workMonthslist=sdao.getSumWorkYearsAll();
+			for(int workMonth : workMonthslist){
+				sum+=workMonth;
+			}
+			workMonths=sum/workMonthslist.size();
+		}
+		else
+			workMonths=sdao.getSumWorkYearsByID(loginedID); 
+		return (float) ((float) Math.round((workMonths/12)*100d) / 100d);
 	}
 
 }

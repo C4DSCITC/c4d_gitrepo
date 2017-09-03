@@ -1,5 +1,7 @@
 package sesoc.global.c4d;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,11 +30,33 @@ public class StatsController {
 	public String stats(HttpSession session,Model model) {
 		session.setAttribute("id", "id1");//
 		String loginedID=(String)session.getAttribute("id");
-		//get avg work years
 		float avgWorkYears=ss.getAvgWorkYears(loginedID);
 		model.addAttribute("avgworkyears",avgWorkYears);
-		
 		return "stats/stats";
+	}
+	
+	@RequestMapping(value = "getExperiences", method = RequestMethod.POST)
+	public @ResponseBody List<Map<String,Object>> getExperiences(HttpSession session,Model model) {
+		String loginedID=(String)session.getAttribute("id");
+		List<Map<String,Object>> list2=new ArrayList<Map<String,Object>>();
+		Map<String,Object> map1=new HashMap<>();
+		Map<String,Object> map2=new HashMap<>();
+		//get avg work years
+		float avgWorkYears=ss.getAvgWorkYears(loginedID);
+		float avgWorkYearsAll=ss.getAvgWorkYears("");
+		map1.put("", "근속년수");
+		map1.put("whole avg", avgWorkYearsAll);
+		map1.put("my avg", avgWorkYears);
+		list2.add(map1);
+		
+		float sumWorkYears=ss.getSumWorkYears(loginedID);
+		float sumWorkYearsAll=ss.getSumWorkYears("");
+		 map2.put("", "경력");
+		 map2.put("whole avg", sumWorkYearsAll);
+		 map2.put("my avg", sumWorkYears);
+		 list2.add(map2);
+		
+		 return list2;
 	}
 	
 	@RequestMapping(value = "fieldratios", method = RequestMethod.POST)

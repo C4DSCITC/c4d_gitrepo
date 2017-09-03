@@ -7,5 +7,6 @@ public interface StatsService {
 	public List<Map<String, Object>> getPercentage(String what);
 
 	public float getAvgWorkYears(String loginedID);
+	public float getSumWorkYears(String loginedID);
  
 }

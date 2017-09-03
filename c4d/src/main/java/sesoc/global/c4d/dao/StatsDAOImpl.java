@@ -37,6 +37,23 @@ public class StatsDAOImpl implements StatsDAO {
 		List<Integer> list=dao.getWorkYearsByID(id);
 		return list;
 	}
+	
+	//0903
+	@Override
+	public List<Integer> getWorkYearsAll() {
+		StatsDAO dao=sqlsession.getMapper(StatsDAO.class);
+		List<Integer> list=dao.getWorkYearsAll();
+		return list;
+	}
+	public List<Integer> getSumWorkYearsAll() {
+		StatsDAO dao=sqlsession.getMapper(StatsDAO.class);
+		return dao.getSumWorkYearsAll();
+	}
+	@Override
+	public int getSumWorkYearsByID(String id) {
+		StatsDAO dao=sqlsession.getMapper(StatsDAO.class);
+		return dao.getSumWorkYearsByID(id);
+	}
 
 
 	

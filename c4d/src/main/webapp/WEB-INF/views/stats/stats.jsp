@@ -214,7 +214,7 @@
     <script src="resources/vendor/morrisjs/morris.min.js"></script>
     <script src="resources/data/morris-data.js"></script><!--done-->
     <script src="resources/data/timeline-data.js"></script>
-    <script src="resources/data/bar-data.jsp"></script> 
+    <script src="resources/data/bar-data.js"  ></script> 
     <script src="resources/data/annotation-data.js"></script> 
     <!-- /stats -->
     
