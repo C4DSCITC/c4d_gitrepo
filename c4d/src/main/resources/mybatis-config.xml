@@ -4,7 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
  <typeAliases> 
+ 	<typeAlias type="sesoc.global.c4d.vo.User" alias="User"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Edu" alias="Edu"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Career" alias="Career"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Licc" alias="Licc"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Cvd" alias="Cvd"/>
  </typeAliases>
   <mappers> 
+  	<mapper resource="/mappers/cv_mapper.xml"/>
   </mappers>
 </configuration>
