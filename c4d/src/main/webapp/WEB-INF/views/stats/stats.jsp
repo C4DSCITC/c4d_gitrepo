@@ -148,10 +148,13 @@
           </div>
         </div>
         
+        <!-- experiences-->
         <div class="row text-center">
-        <!-- ///////////////////////////////////////////////////// -->
-          <div id="timeline" style="height: 360px; width:100%;"></div>
+          <div id="timeline" style="height: 200px; width:100%;"></div>
+          <div id="bar_chart_div"></div><!-- ${avgworkyears} -->
         </div>
+        
+        
         <div class="row text-center">
         <!-- ///////////////////////////////////////////////////// -->
           <div id="chart_div" style="width: 900px; height: 500px;"></div>
@@ -211,7 +214,8 @@
     <script src="resources/vendor/morrisjs/morris.min.js"></script>
     <script src="resources/data/morris-data.js"></script><!--done-->
     <script src="resources/data/timeline-data.js"></script>
-     <script src="resources/data/annotation-data.js"></script> 
+    <script src="resources/data/bar-data.jsp"></script> 
+    <script src="resources/data/annotation-data.js"></script> 
     <!-- /stats -->
     
     <!-- Bootstrap core JavaScript -->

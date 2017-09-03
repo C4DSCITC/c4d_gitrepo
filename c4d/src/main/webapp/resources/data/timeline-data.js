@@ -1,4 +1,5 @@
  
+
 $(function(){
 	 google.charts.load('current', {'packages':['timeline']});
 	
@@ -37,7 +38,6 @@ $(function(){
 				for(var i=0;i<data.length; i++){
 					var array = $.map(data[i], function(value, index) {
 						if(index=='startdate'||index=='enddate'){
-							alert("value : "+value);
 							return new Date(value);
 						}
 						else
