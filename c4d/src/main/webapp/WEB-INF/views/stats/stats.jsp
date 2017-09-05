@@ -29,6 +29,10 @@
     <link href="css/agency.min.css" rel="stylesheet">
 
 	<style type="text/css">
+	#test{
+		height: 348px;
+		wieght: 100%;
+	}
 	</style>
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script>
@@ -109,22 +113,19 @@
             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
           </div>
           <!-- ///////////////////////////////////////////////////// -->
-       
-          
-           <div class="col-md-4"style='background-image: url("resources/img/cup.png");'>
-            <span class="fa-stack fa-4x">
-            	 ${avgworkyears}
-            </span>
-            <h4 class="service-heading">평균 근속 기간</h4>
+       <div class="col-md-4">
+            <div id="test"  style='background-image: url("resources/img/cup.png"); background-position : center center; width:100%; background-size:250px; background-repeat:no-repeat;'>
+              
+            </div>
+            <h4 class="service-heading">평균 근속 기간${avgworkyears}</h4>
             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
           </div>
-          
         </div>
       </div>
     </section>
 
 	 <!-- experiences -->
-    <section id="services2">
+    <section class="bg-light"id="services2">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -134,7 +135,8 @@
         </div>
         <div class="row text-center">
           <div id="timeline" style="height: 200px; width:100%;"></div>
-          <div id="bar_chart_div"></div><!-- ${avgworkyears} -->
+          <div id="bar_chart_div" style="width: 70%;float:left; height:100px;"></div>
+          <div id="empty-space"style="float:right; width: 30%;height:200px; background-color: ivory">ivory배경색이 지정된 예제</div><!-- ${avgworkyears} -->
         </div>
       </div>
     </section>

@@ -9,7 +9,11 @@
     <meta name="author" content="">
 
     <title>C4D - Prototype</title>
-
+	<style>
+	#portfolio{
+		background-color:#413B3A;
+	}
+	</style>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
