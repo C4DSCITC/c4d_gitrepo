@@ -1,6 +1,7 @@
 package sesoc.global.c4d.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,6 +89,43 @@ public class StatsServiceImpl implements StatsService{
 		else
 			workMonths=sdao.getSumWorkYearsByID(loginedID); 
 		return (float) ((float) Math.round((workMonths/12)*100d) / 100d);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> getVisitCnt(String loginedID) {
+		String[] Xarr={"오늘","하루전","2일 전","3일 전","4일 전","5일 전"};
+		List<Map<String,Integer>> cntlist=sdao.getVisitCnt(loginedID);
+		List<Map<String,Object>> returnlist=new ArrayList<>();
+		
+		for(int i=0;i>=-5;i--){
+			Map<String,Object> tempmap=new HashMap<>();//test위한 map
+			Map<String,Object> tempMap=new HashMap<String,Object>();//list에 넣는 map
+			boolean check=false;
+			for(int k=0; k< cntlist.size();k++){
+				Map<String,Integer> map=new HashMap<>();
+				map=cntlist.get(k);
+				List<Integer> temp = new ArrayList<Integer>(map.values());
+				int j=Integer.parseInt(String.valueOf(temp.get(0)));
+				if(j==i){
+					 //returnlist에 map을 넣고 지운다
+					tempMap.put("visitdate", Xarr[i*-1]);
+					tempMap.put("cnt", Integer.parseInt(String.valueOf(temp.get(1))));
+					returnlist.add(tempMap);
+					cntlist.remove(k);
+					check=true;
+					break;
+				}
+			}
+			 if(!check){
+				 tempMap.put("visitdate", Xarr[i*-1]);
+					tempMap.put("cnt", 0);
+					returnlist.add(tempMap);
+			 }
+		
+		}
+		System.out.println("returnlist : "+returnlist);
+		return returnlist;
 	}
 
 }

@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,10 +25,12 @@ public class HomeController {
 	@Autowired
 	SqlSession ss;
 	
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(HttpSession session) {
-		return "index";
+		return "redirect:stats";
 	}
+	
 	
 	//로그인 테스트용 준환이 코드 오면 지울 예정
 	@RequestMapping(value = "login", method = RequestMethod.GET)
@@ -47,6 +50,6 @@ public class HomeController {
 		session.setAttribute("id", user.getId());
 		session.setAttribute("name", user.getName());
 		
-		return "redirect:/";
+		return "cv";
 	}
 }

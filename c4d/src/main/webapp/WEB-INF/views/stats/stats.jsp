@@ -29,24 +29,6 @@
     <link href="css/agency.min.css" rel="stylesheet">
 
 	<style type="text/css">
-	
-		 body {
-        font: 10px sans-serif;
-    }
-    .axis path,
-    .axis line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
-    }
-    /*.x.axis path {
-        display: none;
-    }*/
-    .line {
-        fill: none;
-        stroke: steelblue;
-        stroke-width: 1.5px;
-    }
 	</style>
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script>
@@ -127,18 +109,21 @@
             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
           </div>
           <!-- ///////////////////////////////////////////////////// -->
-          <div class="col-md-4">
-            <div id=avgworkyears>
-            ${avgworkyears}
-            </div>
+       
+          
+           <div class="col-md-4"style='background-image: url("resources/img/cup.png");'>
+            <span class="fa-stack fa-4x">
+            	 ${avgworkyears}
+            </span>
             <h4 class="service-heading">평균 근속 기간</h4>
             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
           </div>
+          
         </div>
       </div>
     </section>
 
-	 <!-- Services -->
+	 <!-- experiences -->
     <section id="services2">
       <div class="container">
         <div class="row">
@@ -147,17 +132,24 @@
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
           </div>
         </div>
-        
-        <!-- experiences-->
         <div class="row text-center">
           <div id="timeline" style="height: 200px; width:100%;"></div>
           <div id="bar_chart_div"></div><!-- ${avgworkyears} -->
         </div>
-        
-        
+      </div>
+    </section>
+    
+     <!-- popularity -->
+    <section id="services2">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">popularity</h2>
+            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+          </div>
+        </div>
         <div class="row text-center">
-        <!-- ///////////////////////////////////////////////////// -->
-          <div id="chart_div" style="width: 900px; height: 500px;"></div>
+          <div id="popularity-chart" style="width: 100%; " ></div>
         </div>
       </div>
     </section>
@@ -200,6 +192,7 @@
           </div>
         </div>
       </div>
+      
     </footer>
 
     
@@ -207,7 +200,6 @@
     <!-- stats -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
      <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-	 <!-- jQuery -->
     
     <!-- Morris Charts JavaScript -->
     <script src="resources/vendor/raphael/raphael.min.js"></script>
@@ -215,7 +207,7 @@
     <script src="resources/data/morris-data.js"></script><!--done-->
     <script src="resources/data/timeline-data.js"></script>
     <script src="resources/data/bar-data.js"  ></script> 
-    <script src="resources/data/annotation-data.js"></script> 
+    <script src="resources/data/popularity-data.js"></script> 
     <!-- /stats -->
     
     <!-- Bootstrap core JavaScript -->

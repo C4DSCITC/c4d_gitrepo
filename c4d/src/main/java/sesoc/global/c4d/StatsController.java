@@ -58,7 +58,13 @@ public class StatsController {
 		
 		 return list2;
 	}
-	
+	@RequestMapping(value = "getVisitCnt", method = RequestMethod.POST)
+	public @ResponseBody List<Map<String,Object>> getVisitCnt(HttpSession session,Model model) {
+		String loginedID=(String)session.getAttribute("id");
+		List<Map<String,Object>> list2=ss.getVisitCnt(loginedID);
+		
+		 return list2;
+	}
 	@RequestMapping(value = "fieldratios", method = RequestMethod.POST)
 	public @ResponseBody List<Map<String,Object>> fieldratios(Model model) {
 		List<Map<String,Object>> list=ss.getPercentage("field");

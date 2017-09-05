@@ -5,11 +5,10 @@ $(function(){
     var bigarr=[];
     var cdata=['', 'whole avg', 'my avg'];
     bigarr.push(cdata);
- $.ajax({
+    	$.ajax({
 			url : "getExperiences"
 			,method: "post"
 			,success : function(data){
-				alert(data);
 				cdata=data;
 				
 				for(var i=0;i<data.length; i++){
@@ -17,7 +16,6 @@ $(function(){
 							return [value];
 					});
 				bigarr.push(array);
-				alert(JSON.stringify(bigarr));
 				}//for 
 				drawChart();
 			  }//function
@@ -45,6 +43,4 @@ $(function(){
 
       
     }
-    
- });
- 
+})

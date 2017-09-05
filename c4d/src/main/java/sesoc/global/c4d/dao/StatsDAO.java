@@ -13,5 +13,7 @@ public interface StatsDAO {
 	public List<Integer> getWorkYearsAll();
 	
 	public List<Integer> getSumWorkYearsAll(); 
-	public int getSumWorkYearsByID(String id); 
+	public int getSumWorkYearsByID(String id);
+	
+	public List<Map<String, Integer>> getVisitCnt(String loginedID);
 }
