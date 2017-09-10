@@ -108,4 +108,28 @@ commit;
 insert into project values(project_seq.nextval, 'id1','android pj','server dev','kaisha0',to_date('20081030','yyyymmdd'),to_date('20100830','yyyymmdd'));
 commit;
 
- 
+insert into education values(edu_seq.nextval, 'id0', '00대학교', '00학과', '학사', '4.0', to_date('200003', 'yyyymm'), to_date('200402','yyyymm'));
+insert into education values(edu_seq.nextval, 'id1', '11대학교', '11학과', '학사', '4.1', to_date('200103', 'yyyymm'), to_date('200502','yyyymm'));
+insert into education values(edu_seq.nextval, 'id2', '22대학교', '22학과', '학사', '4.2', to_date('200203', 'yyyymm'), to_date('200602','yyyymm'));
+insert into education values(edu_seq.nextval, 'id3', '동경대학교', '경영학과', '학사', '4.3', to_date('200303', 'yyyymm'), to_date('200502','yyyymm'));
+insert into education values(edu_seq.nextval, 'id4', '동경대학교', '기계공학과', '학사', '4.4', to_date('200403', 'yyyymm'), to_date('200602','yyyymm'));
+insert into education values(edu_seq.nextval, 'id99', '동경대학교', '컴퓨터공학과', '학사', '4.5', to_date('200503', 'yyyymm'), to_date('200702','yyyymm'));
+insert into education values(edu_seq.nextval, 'id99', '동경대학교', '컴퓨터보안공학과', '석사', '4.5', to_date('200703', 'yyyymm'), to_date('200902','yyyymm'));
+insert into education values(edu_seq.nextval, 'id99', '동경대학교', 'IT매니지먼트', '박사', '4.5', to_date('200903', 'yyyymm'), to_date('201202','yyyymm'));
+insert into education values(edu_seq.nextval, 'id98', '북경대학교', '경제학과', '학사', '4.4', to_date('200603', 'yyyymm'), to_date('200802','yyyymm'));
+insert into education values(edu_seq.nextval, 'id97', '북경대학교', '전자전기학과', '학사', '4.3', to_date('200903', 'yyyymm'), to_date('200902','yyyymm'));
+insert into education values(edu_seq.nextval, 'id96', '과학잘해대학교', '물리학과', '석사', '4.5', to_date('200703', 'yyyymm'), to_date('201002','yyyymm'));
+insert into education values(edu_seq.nextval, 'id95', '삼성대학교', '천체물리학과', '박사', '4.5', to_date('200803', 'yyyymm'), to_date('201102','yyyymm'));
+insert into education values(edu_seq.nextval, 'id94', '현대대학교', '미생물학과', '박사', '3.5', to_date('200903', 'yyyymm'), to_date('201202','yyyymm'));
+insert into education values(edu_seq.nextval, 'id93', '한진대학교', '무역학과', '학사', '4.5', to_date('200703', 'yyyymm'), to_date('201302','yyyymm'));
+insert into education values(edu_seq.nextval, 'id92', '엘지대학교', '영어영문학과', '학사', '4.0', to_date('201003', 'yyyymm'), to_date('201402','yyyymm'));
+commit;
+
+insert into career values(career_seq.nextval, 'id99', '사원', '하드뱅크', '소프트웨어개발 3부', to_date('20070402', 'yyyymmdd'), to_date('20100508', 'yyyymmdd'));
+insert into career values(career_seq.nextval, 'id99', '대리', '텐더뱅크', '산업보안부', to_date('20100528', 'yyyymmdd'), to_date('20131108', 'yyyymmdd'));
+insert into career values(career_seq.nextval, 'id99', '과장', '뱅크뱅크', '보안부', to_date('20140528', 'yyyymmdd'), to_date('20170408', 'yyyymmdd'));
+commit;
+
+insert into license values(license_seq.nextval, 'id99', '1종운전면허', '경찰청', ' ', to_date('20040513', 'yyyymmdd'));
+insert into license values(license_seq.nextval, 'id99', '정보처리기사', '한국산업인력공단', ' ', to_date('20070513', 'yyyymmdd'));
+commit;

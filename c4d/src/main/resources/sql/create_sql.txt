@@ -40,7 +40,7 @@ CREATE TABLE education
 	edu_school varchar2(50) NOT NULL,
 	edu_major varchar2(30) NOT NULL,
 	edu_degree varchar2(30) NOT NULL,
-	edu_gpa number(2,2) NOT NULL,
+	edu_gpa number NOT NULL,
 	edu_startdate date NOT NULL,
 	edu_enddate date NOT NULL,
 	PRIMARY KEY (edu_num)
@@ -53,7 +53,7 @@ CREATE TABLE license
 	license_userid varchar2(20) NOT NULL,
 	license_title varchar2(60) NOT NULL,
 	license_org varchar2(30) NOT NULL,
-	license_ref varchar2(30) NOT NULL,
+	license_ref varchar2(30),
 	license_date date NOT NULL,
 	PRIMARY KEY (license_num)
 );

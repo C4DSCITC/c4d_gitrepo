@@ -27,17 +27,27 @@
 	<link href="assets/css/style.css" rel="stylesheet" media="screen">
  	<!-- Responsive CSS -->
  	<link href="assets/css/responsive.css" rel="stylesheet">
- 	
+ 	<!-- 20170908 skillModal CSS -->
+ 	<link href="assets/css/skillModal.css">
  	 <link rel="shortcut icon" href="assets/images/ico/favicon.png">
 	 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/ico/apple-touch-icon-144-precomposed.png">
 	 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/ico/apple-touch-icon-114-precomposed.png">
 	 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/ico/apple-touch-icon-72-precomposed.png">
 	 <link rel="apple-touch-icon-precomposed" href="assets/images/ico/apple-touch-icon-57-precomposed.png">
-<!-- 20170901 jenna kim -->
-<script src="resources/jquery-3.2.1.min.js"></script>
-<script src="resources/instantedit.js"></script>
+<style>
+.skillPlus:hover{
+	cursor: pointer;
+}
+
+.skillappend {
+	margin: 0 auto;
+	width: 80%;
+}
+</style>
 </head>
 <body>
+<!-- 20170904 jenna kim div to get all html of body -->
+<div id="body_html"> 
 <!-- Preloader -->
 	<div id="tt-preloader">
 		<div id="pre-status">
@@ -48,11 +58,11 @@
 	<!-- Home Section -->
 	<section id="home" class="tt-fullHeight" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2">
 		<div class="intro">
-			<div class="intro-sub">${user.name}</div>
-			<span>
-			<h1>Creative <span>PROGRAMMER</span></h1>
+			<div class="intro-sub" contenteditable="true">${user.name}</div>
+			<span class="editText" id="title" contenteditable="true">
+			<h1 >Creative <span>PROGRAMMER</span></h1>
 			</span>
-			<span class="editText" id="content">
+			<span class="editText" id="content" contenteditable="true">
 			<p>I am a fully professional freelance creative User Interface Designer &amp; Developer<br> Involving with latest web designing and technologies is a great <br> feel free to contact creative.</p>
 			</span>
 		</div>
@@ -61,9 +71,6 @@
 			<div class="wheel"></div>
 		</div>
 	</section><!-- End Home Section -->
-
-
-
 
 	<!-- Navigation -->
 	<header class="header">
@@ -76,21 +83,10 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<c:if test="${id == cv.id }">
-					<a class="navbar-brand" href="save_cv?id=${id}">Save my CV</a>
-					</c:if>
+<%-- 					<c:if test="${id == cv.id }"> --%>
+					<a class="navbar-brand" id="webCv_save">Save my CV</a>
+<%-- 					</c:if> --%>
 				</div>
-
-				<div class="collapse navbar-collapse" id="custom-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#home">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#resume">Resume</a></li>
-						<li><a href="#skills">Skills</a></li>
-						<li><a href="#works">Works</a></li>
-					</ul>
-				</div>
-			</div><!-- .container -->
 		</nav>
 	</header><!-- End Navigation -->
 
@@ -98,14 +94,15 @@
     <!-- About Section -->
     <section id="about" class="about-section section-padding">
       <div class="container">
-        <h2 class="section-title wow fadeInUp">About Me</h2>
+        <h2 class="section-title wow fadeInUp" contenteditable="true">About Me</h2>
 
         <div class="row">
 
           <div class="col-md-4 col-md-push-8">
             <div class="biography">
               <div class="myphoto">
-                <img src="assets/images/myphoto.jpg" alt="">
+              <!-- ☆이미지 DB등록 후 변경 예정 -->
+                <img src="assets/images/pf2.jpg" alt="">
               </div>
               <ul>
                 <li><strong>Name:</strong> ${user.name}</li>
@@ -119,34 +116,26 @@
 
           <div class="col-md-8 col-md-pull-4">
             <div class="short-info wow fadeInUp">
-            <span class="editText" id="content">
-              <h3>Objective</h3>
+            <span class="editText" id="object">
+              <h3 contenteditable="true">Objective</h3>
             </span>
-            <span class="editText" id="content"> 
+            <span class="editText" id="o_content" contenteditable="true"> 
               <p>An opportunity to work and upgrade oneself, as well as being involved in an organization that believes in gaining a competitive edge and giving back to the community. I'm presently expanding my solid experience in UI / UX design. I focus on using my interpersonal skills to build good user experience and create a strong interest in my employers. I hope to develop skills in motion design and my knowledge of the Web, and become an honest asset to the business. As an individual, I'm self-confident you’ll find me creative, funny and naturally passionate. I’m a forward thinker, which others may find inspiring when working as a team.</p>
             </span>
             </div>
 
             <div class="short-info wow fadeInUp">
-              <h3>What I Do ?</h3>
+              <span class="editText" id="whatido">
+              <h3 contenteditable="true">What I Do ?</h3>
+              </span>
+              <span class="editText" id="w_content" contenteditable="true">
               <p>I have been working as a web interface designer since. I have a love of clean, elegant styling, and I have lots of experience in the production of CSS3 and HTML5 for modern websites. I loving creating awesome as per my clients’ need. I think user experience when I try to craft something for my clients. Making a design awesome.</p>
-
-              <ul class="list-check">
-                <li>User Experience Design</li>
-                <li>Interface Design</li>
-                <li>Product Design</li>
-                <li>Branding Design</li>
-                <li>Digital Painting</li>
-                <li>Video Editing</li>
-              </ul>
+			  </span>
             </div>
-
             <div class="download-button">
               <a class="btn btn-primary btn-lg" href="cv_download?id=${id}"><i class="fa fa-download"></i>download my cv</a>
             </div>
           </div>
-
-
         </div> <!-- /.row -->
       </div> <!-- /.container -->
     </section><!-- End About Section -->
@@ -154,70 +143,58 @@
     <!-- Resume Section -->
     <section id="resume" class="resume-section section-padding">
         <div class="container">
-            <h2 class="section-title wow fadeInUp">Resume</h2>
+            <h2 class="section-title wow fadeInUp" contenteditable="true">이력</h2>
             <div class="row">
                 <div class="col-md-12">
                     <div class="resume-title">
-                        <h3>Education</h3>
+                        <h3>학력</h3>
                     </div>
                     <div class="resume">
-                        <ul class="timeline">
-                            <li>
-                                <div class="posted-date">
-                                    <span class="month">2007-2011</span>
-                                </div><!-- /posted-date -->
+                        <ul class="timeline edulist">
+                           <c:forEach var = "edu" items="${elist}" varStatus="stat">
+                           <c:choose>
+	                           <c:when test="${stat.count%2==0}">
+	                           		<li class="timeline-inverted">
+                                	<div class="posted-date">
+                                    <span class="month" >${edu.edu_startdate}<span>-</span>${edu.edu_enddate}</span>
+                             	   </div><!-- /posted-date -->
 
                                 <div class="timeline-panel wow fadeInUp">
                                     <div class="timeline-content">
                                         <div class="timeline-heading">
-                                            <h3>Bachelor degree certificate</h3>
-                                            <span>BA(Hons) in UI Engineering, Arts University, Pabna, USA</span>
+                                            <h3>${edu.edu_school}</h3>
+                                            <span>${edu.edu_major}</span>
                                         </div><!-- /timeline-heading -->
 
-                                        <div class="timeline-body">
-                                            <p>I have completed UI Engineering degree from ABC University, Boston, USA at feel the charm of existence in this spot, which was creat.</p>
-                                        </div><!-- /timeline-body -->
-                                    </div> <!-- /timeline-content -->
-                                </div><!-- /timeline-panel -->
-                            </li>
-
-                            <li class="timeline-inverted">
-                                <div class="posted-date">
-                                    <span class="month">2004-2006</span>
-                                </div><!-- /posted-date -->
-
-                                <div class="timeline-panel wow fadeInUp">
-                                    <div class="timeline-content">
-                                        <div class="timeline-heading">
-                                            <h3>Higher Secondary certificate</h3>
-                                            <span>Typography Arts, FA College, New York, USA</span>
-                                        </div><!-- /timeline-heading -->
-
-                                        <div class="timeline-body">
-                                            <p>From this college of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
+                                        <div class="timeline-body" contenteditable="true">
+                                            <p>클릭하여 어필하고 싶은 부분을 입력해주세요.</p>
                                         </div><!-- /timeline-body -->
                                     </div> <!-- /timeline-content -->
                                 </div> <!-- /timeline-panel -->
                             </li>
-
-                            <li>
+	                           </c:when>
+	                           <c:otherwise>
+	                           	 <li>
                                 <div class="posted-date">
-                                  <span class="month">2000-2003</span>
+                                    <span class="month">${edu.edu_startdate}<span>-</span>${edu.edu_enddate}</span>
                                 </div><!-- /posted-date -->
 
                                 <div class="timeline-panel wow fadeInUp">
                                     <div class="timeline-content">
                                         <div class="timeline-heading">
-                                            <h3>Secondary school certificate</h3>
-                                            <span>Creative Arts, Julius Jr. school, USA</span>
+                                            <h3>${edu.edu_school}</h3>
+                                            <span>${edu.edu_major}</span>
                                         </div><!-- /timeline-heading -->
 
-                                        <div class="timeline-body">
-                                            <p>I was awesome at arts, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy.</p>
+                                        <div class="timeline-body" contenteditable="true">
+                                            <p>클릭하여 어필하고 싶은 부분을 입력해주세요.</p>
                                         </div><!-- /timeline-body -->
                                     </div> <!-- /timeline-content -->
                                 </div><!-- /timeline-panel -->
                             </li>
+	                           </c:otherwise>
+                           </c:choose>
+                           </c:forEach>
                         </ul>
                     </div>
                 </div>
@@ -226,47 +203,54 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="resume-title">
-                        <h3>Experience</h3>
+                        <h3 contenteditable="true">경력</h3>
                     </div>
                     <div class="resume">
                         <ul class="timeline">
-                            <li class="timeline-inverted">
-                                <div class="posted-date">
-                                  <span class="month">2011-2013</span>
-                                </div><!-- /posted-date -->
+	                          <c:forEach var = "career" items="${clist}" varStatus="stat">
+                           <c:choose>
+	                           <c:when test="${stat.count%2==0}">
+	                           		<li class="timeline-inverted">
+                                	<div class="posted-date">
+                                    <span class="month" >${career.career_startdate}<span>-</span>${career.career_enddate}</span>
+                             	   </div><!-- /posted-date -->
 
                                 <div class="timeline-panel wow fadeInUp">
                                     <div class="timeline-content">
                                         <div class="timeline-heading">
-                                            <h3>Junior ui designer</h3>
-                                            <span>XYZ Design Home, One Street, Boston</span>
+                                            <h3>${career.career_org}</h3>
+                                            <span>${career.career_dept}<span>직급: ${career.career_title}</span>
                                         </div><!-- /timeline-heading -->
 
-                                        <div class="timeline-body">
-                                            <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
+                                        <div class="timeline-body" contenteditable="true">
+                                            <p>클릭하여 어필하고 싶은 부분을 입력해주세요.</p>
                                         </div><!-- /timeline-body -->
                                     </div> <!-- /timeline-content -->
                                 </div> <!-- /timeline-panel -->
                             </li>
-
-                            <li>
+	                           </c:when>
+	                           <c:otherwise>
+	                           	 <li>
                                 <div class="posted-date">
-                                  <span class="month">2013-2015</span>
+                                    <span class="month">${career.career_startdate}<span>-</span>${career.career_enddate}</span>
                                 </div><!-- /posted-date -->
 
                                 <div class="timeline-panel wow fadeInUp">
                                     <div class="timeline-content">
                                         <div class="timeline-heading">
-                                            <h3>Lead UX Consultant</h3>
-                                            <span>Lucky8 Designing Firm, California</span>
+                                            <h3>${career.career_org}</h3>
+                                            <span>${career.career_dept}<span>직급: ${career.career_title}</span>
                                         </div><!-- /timeline-heading -->
 
-                                        <div class="timeline-body">
-                                            <p>Completely provide access to seamless manufactured products before functionalized synergy. Progressively redefine competitive.</p>
+                                        <div class="timeline-body" contenteditable="true">
+                                            <p>클릭하여 어필하고 싶은 부분을 입력해주세요.</p>
                                         </div><!-- /timeline-body -->
                                     </div> <!-- /timeline-content -->
                                 </div><!-- /timeline-panel -->
                             </li>
+	                           </c:otherwise>
+                           </c:choose>
+                           </c:forEach>
                         </ul>
                     </div>
                 </div>
@@ -278,69 +262,20 @@
     <!-- Skills Section -->
     <section id="skills" class="skills-section section-padding">
       <div class="container">
-        <h2 class="section-title wow fadeInUp">Skills</h2>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="skill-progress">
-              <div class="skill-title"><h3>UX Design</h3></div> 
-              <div class="progress">
-                <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" ><span>95%</span>
-                </div>
-              </div><!-- /.progress -->
-            </div><!-- /.skill-progress -->
-
-            <div class="skill-progress">
-              <div class="skill-title"><h3>Visual Design</h3></div> 
-              <div class="progress">
-                <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" ><span>80%</span>
-                </div>
-              </div><!-- /.progress -->
-            </div><!-- /.skill-progress -->
-            <div class="skill-progress">
-              <div class="skill-title"><h3>Business Design</h3></div>  
-              <div class="progress">
-                <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ><span>75%</span>
-                </div>
-              </div><!-- /.progress -->
-            </div><!-- /.skill-progress -->
-          </div><!-- /.col-md-6 -->
-
-          <div class="col-md-6">
-            <div class="skill-progress">
-              <div class="skill-title"><h3>Branding Design</h3></div> 
-              <div class="progress">
-                <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" ><span>95%</span>
-                </div>
-              </div><!-- /.progress -->
-            </div><!-- /.skill-progress -->
-            <div class="skill-progress">
-              <div class="skill-title"><h3>Motion Graphic</h3></div> 
-              <div class="progress">
-                <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" ><span>80%</span>
-                </div>
-              </div><!-- /.progress -->
-            </div><!-- /.skill-progress -->
-            <div class="skill-progress">
-              <div class="skill-title"><h3>Flyers Designing</h3></div>  
-              <div class="progress">
-                <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ><span>75%</span>
-                </div>
-              </div><!-- /.progress -->
-            </div><!-- /.skill-progress -->
-          </div><!-- /.col-md-6 -->
-        </div><!-- /.row -->
-
+      
+        <h2 class="section-title wow fadeInUp skillPlus" data-toggle="modal" data-target="#skillModal">Skills</h2>
+			<div class="skillappend"></div><!-- 사용자가 입력한 스킬이 들어갈 부분 -->
+			
         <div class="skill-chart text-center">
-          <h3>More skills</h3>
+          <h3 class="section-title wow fadeInUp skillPlus" data-toggle="modal" data-target="#moreSkillModal">More skills</h3>
         </div>
-          
+          <div class="moreSkillappend"></div><!-- 사용자가 입력한 스킬이 들어갈 부분 -->
         <div class="row more-skill text-center">
           <div class="col-xs-12 col-sm-4 col-md-2">
               <div class="chart" data-percent="91" data-color="e74c3c">
                     <span class="percent"></span>
                     <div class="chart-text">
-                      <span>leadership</span>
+                      <span contenteditable="true">Responsibility</span>
                     </div>
                 </div>
             </div>
@@ -348,7 +283,7 @@
               <div class="chart" data-percent="23" data-color="2ecc71">
                     <span class="percent"></span>
                     <div class="chart-text">
-                      <span>Creativity</span>
+                      <span contenteditable="true">Leadership</span>
                     </div>
                 </div>
             </div>
@@ -356,7 +291,7 @@
               <div class="chart" data-percent="68" data-color="3498db">
                     <span class="percent"></span>
                     <div class="chart-text">
-                      <span>Management</span>
+                      <span contenteditable="true">Cooperation</span>
                     </div>
                 </div>
             </div>
@@ -364,7 +299,7 @@
               <div class="chart" data-percent="68" data-color="3498db">
                     <span class="percent"></span>
                     <div class="chart-text">
-                      <span>Branding</span>
+                      <span contenteditable="true">Management</span>
                     </div>
                 </div>
             </div>
@@ -372,7 +307,7 @@
               <div class="chart" data-percent="68" data-color="3498db">
                     <span class="percent"></span>
                     <div class="chart-text">
-                      <span>Marketing</span>
+                      <span contenteditable="true">Communication</span>
                     </div>
                 </div>
             </div>
@@ -380,7 +315,7 @@
               <div class="chart" data-percent="68" data-color="3498db">
                     <span class="percent"></span>
                     <div class="chart-text">
-                      <span>Motivation</span>
+                      <span contenteditable="true">Motivation</span>
                     </div>
                 </div>
             </div>
@@ -393,12 +328,12 @@
     <!-- Works Section -->
     <section id="works" class="works-section section-padding">
       <div class="container">
-        <h2 class="section-title wow fadeInUp">Works</h2>
+        <h2 class="section-title wow fadeInUp" contenteditable="true">Works</h2>
 
         <ul class="list-inline" id="filter">
             <li><a class="active" data-group="all">All</a></li>
-            <li><a data-group="design">Design</a></li>
-            <li><a data-group="web">Web</a></li>
+            <li><a data-group="design" >Design</a></li>
+            <li><a data-group="web" >Web</a></li>
             <li><a data-group="interface">Interface</a></li>
             <li><a data-group="identety">Identity</a></li>
         </ul>
@@ -542,23 +477,30 @@
               <div class="count-wrap">
                 <div class="col-sm-3 col-xs-6">
                   <i class="fa fa-flask"></i>
-                  <h3 class="timer">7</h3>
-                  <p>Years of Experience</p>
+                  <h3 class="timer">
+                  <span class="editText" id="years_Exp"> 7</span>
+                  </h3>
+                  <p contenteditable="true">Years of Experience</p>
                 </div>
                 <div class="col-sm-3 col-xs-6"> 
                   <i class="fa fa-thumbs-up"></i>
-                  <h3 class="timer">651</h3>                
-                  <p>Projects Done</p>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                  <i class="fa fa-users"></i>
-                  <h3 class="timer">251</h3> 
-                  <p>Happy Clients</p>
+                  <h3 class="timer">
+                  <span class="editText" id="number_prj"> 651</span>
+                  </h3>                
+                  <p contenteditable="true">Projects Done</p>
                 </div>
                 <div class="col-sm-3 col-xs-6">
                   <i class="fa fa-trophy"></i>
-                  <h3 class="timer">5</h3> 
-                  <p>Awards Won</p>
+                  <h3 class="timer">
+                  <span class="editText" id="number_won"> 5 </span>
+                  </h3> 
+                  <p contenteditable="true">Awards Won</p>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                  <i class="fa fa-users"></i>
+                  <!-- ☆오늘 방문자수 입력예정 -->
+                  <h3 class="timer">251</h3> 
+                  <p contenteditable="true">Visited Today</p>
                 </div>
               </div><!-- /count-wrap -->
             </div><!-- /.col-md-12 -->
@@ -579,13 +521,35 @@
         </div>
       </div>
     </footer><!-- End Footer Section -->
+    
+ <!-- Skill modal -->
+ <div id="skillModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
 
-
-	<!-- Scroll-up -->
-	<div class="scroll-up">
-		<a href="#home"><i class="fa fa-angle-up"></i></a>
-	</div>
-
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Skills</h4>
+      </div>
+      <div class="modal-body">
+      <center>
+      <ul id="skillInput">
+      <li>
+      <input type="text" class="skill_title" placeholder="스킬 :    예)Java" width="600px" style="padding-left: 10px"><input type="number" class="skill_num" placeholder="능력도:    예)85" style="padding-left: 10px">
+      </li>
+      </ul>
+      </center>
+      </div>
+      <div class="modal-footer">
+      <center>
+        <button type="button" class="btn btn-primary btn-sm" id="skillplusBtn">스킬 추가</button>
+        <button type="button" class="btn btn-warningid btn-sm" data-dismiss="modal" id="skillapplyBtn">스킬저장</button>
+      </center>
+      </div>
+    </div>
+  </div>
+</div>    
 	<!-- Javascript files -->
 	<script src="assets/js/jquery.js"></script>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -601,5 +565,40 @@
   <script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script>
   <script src="assets/js/jquery.fitvids.js"></script>
   <script src="assets/js/scripts.js"></script>
+  <!-- 20170901 jenna kim -->
+  <script src="resources/jquery-3.2.1.min.js"></script>
+  <!-- 20170904 jenna kim inline editor-->
+  <script src="https://cdn.ckeditor.com/4.7.2/standard-all/ckeditor.js"></script>
+  <!-- 20170908 jenna kim dialog -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!-- 20170904 jenna kim save my cv-->
+  <script>
+$(document).ready(function () {
+	var skillInput =$("#skillInput");
+	 $('#skillplusBtn').on('click', function (e) {
+		 skillInput.append('<li><input type="text" class="skill_title" placeholder="스킬 :    예)Java" width="600px" style="padding-left: 10px"><input type="number" class="skill_num" placeholder="능력도:    예)85" style="padding-left: 10px"></li>');
+	})
+	$('#skillapplyBtn').on('click', function () {
+		var skillList = []
+		var skill_title = $(".skill_title");
+		var skill_num = $(".skill_num");
+		$.each(skill_title,function(index, item){
+			skillList.push(
+				{"skill_title" : $(item).val(), "skill_num" : $(skill_num[index]).val()}		
+			);			
+		})
+		var skillappend = $(".skillappend");
+		
+		$.each(skillList, function (index, item) {
+		 sList = '<div class="row"><div class="col-md-6"><div class="skill-progress"><div class="skill-title"><h3>'+item.skill_title+'</h3></div><div class="progress"><div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="'+item.skill_num+'" aria-valuemin="0" aria-valuemax="100" style="width: '+item.skill_num+'%;" ><span>'+item.skill_num+'% </span></div></div></div></div>';
+		skillappend.append(sList);
+		$(".skill_title").val(" ");
+		$(".skill_num").val(" ");
+		})
+	})
+}) 
+  </script>
+  
+  
 </body>
 </html>

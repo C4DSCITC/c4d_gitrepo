@@ -20,18 +20,24 @@
 	<resources location="/resources/scss/" mapping="/scss/**" />
 	<resources location="/resources/vendor/" mapping="/vendor/**" />
 	
-	<!-- jenna 2017/08/28 -->
+	<!-- 20170828 jenna kim-->
 	<!-- bootstrap for cv page -->
 	<resources location="/resources/assets/" mapping="/assets/**" />
-
+	<resources location="/resources/assets/" mapping="/assets2/**" />
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 20170904 jenna kim 서버파일 저장경로-->
+	
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="C:\\c4d\\webcv">
+		</beans:constructor-arg>
+	</beans:bean>
+	
 	<context:component-scan base-package="sesoc.global.c4d" />
-	
-	
-	
+
 </beans:beans>

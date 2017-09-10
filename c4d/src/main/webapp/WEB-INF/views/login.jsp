@@ -5,7 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<<<<<<< HEAD
 <!-- 20170901 jenna kim -->
 <script src="resources/jquery-3.2.1.min.js"></script>
 <script>

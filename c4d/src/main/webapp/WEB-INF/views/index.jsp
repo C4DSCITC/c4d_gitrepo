@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
   <head>
 
@@ -41,10 +41,10 @@
               <a class="nav-link js-scroll-trigger" href="#services">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+              <a class="nav-link js-scroll-trigger" href="cv">CV</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="cv?id=${id}">Resume</a>
+              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#team">Team</a>
@@ -62,7 +62,7 @@
       <div class="container">
         <div class="intro-text">
           <div class="intro-lead-in">C4D - Prototype</div>
-          <div class="intro-heading">Resume</div>
+          <div class="intro-heading">C4D</div>
           <a class="btn btn-xl js-scroll-trigger" href="#services">Tell Me More</a>
         </div>
       </div>
