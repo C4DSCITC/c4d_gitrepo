@@ -28,7 +28,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(HttpSession session) {
-		return "redirect:stats";
+		return "index";
 	}
 	
 	

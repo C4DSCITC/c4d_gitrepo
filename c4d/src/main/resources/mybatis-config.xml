@@ -11,11 +11,14 @@
  	<typeAlias type="sesoc.global.c4d.vo.Licc" alias="Licc"/>
  	<typeAlias type="sesoc.global.c4d.vo.Cvd" alias="Cvd"/>
  	<typeAlias type="sesoc.global.c4d.vo.Project" alias="Project"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Portfolio" alias="Portfolio"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.PfImage" alias="PfImage"/>
  </typeAliases>
   <mappers> 
   	<mapper resource="/mappers/cv_mapper.xml"/>
   	<mapper resource="mappers/statsMapper.xml"></mapper>
   	<mapper resource="mappers/careerMapper.xml"></mapper>
   	<mapper resource="mappers/projectMapper.xml"></mapper>
+  	<mapper resource="mappers/portfolioMapper.xml"></mapper>
   </mappers>
-</configuration>
+</configuration> 

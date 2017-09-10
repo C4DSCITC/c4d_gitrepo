@@ -5,11 +5,15 @@ import java.util.Date;
 public class Project {
 	private int project_num;
 	private String project_userid;
-	private String project_title;
-	private String project_role;
-	private String project_org;
+	private String project_title="";
+	private String project_role="";
+	private String project_org="";
 	private Date project_satartdate;
 	private Date project_enddate;
+	private String language="" ;
+	private String  field="";
+	private String description="" ;
+	private String saveCode;
 	
 	public Project(){}
 
@@ -69,8 +73,49 @@ public class Project {
 		this.project_enddate = project_enddate;
 	}
 
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+	public String getField() {
+		return field;
+	}
+
+	public void setField(String field) {
+		this.field = field;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getSaveCode() {
+		return saveCode;
+	}
+
+	public void setSaveCode(String saveCode) {
+		this.saveCode = saveCode;
+	}
+
+	@Override
+	public String toString() {
+		return "Project [project_num=" + project_num + ", project_userid=" + project_userid + ", project_title="
+				+ project_title + ", project_role=" + project_role + ", project_org=" + project_org
+				+ ", project_satartdate=" + project_satartdate + ", project_enddate=" + project_enddate + ", language="
+				+ language + ", field=" + field + ", description=" + description + ", saveCode=" + saveCode + "]";
+	}
+
 	public Project(int project_num, String project_userid, String project_title, String project_role,
-			String project_org, Date project_satartdate, Date project_enddate) {
+			String project_org, Date project_satartdate, Date project_enddate, String language, String field,
+			String description, String saveCode) {
 		super();
 		this.project_num = project_num;
 		this.project_userid = project_userid;
@@ -79,14 +124,16 @@ public class Project {
 		this.project_org = project_org;
 		this.project_satartdate = project_satartdate;
 		this.project_enddate = project_enddate;
+		this.language = language;
+		this.field = field;
+		this.description = description;
+		this.saveCode = saveCode;
 	}
 
-	@Override
-	public String toString() {
-		return "Project [project_num=" + project_num + ", project_userid=" + project_userid + ", project_title="
-				+ project_title + ", project_role=" + project_role + ", project_org=" + project_org
-				+ ", project_satartdate=" + project_satartdate + ", project_enddate=" + project_enddate + "]";
-	}
+
+
+	 
+ 
 	
 	
 }

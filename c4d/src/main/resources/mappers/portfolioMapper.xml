@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sesoc.global.c4d.dao.PfDAO">
+
+	
+	<insert id="insertPF" parameterType="Portfolio">
+	insert into portfolio values(
+		 pf_SEQ.nextval,
+		#{project_num},
+		#{path}
+	)
+	</insert>
+	<select id="getCurrentPfNum" resultType="int">
+	  select NVL(max(pf_num),0) from portfolio
+	</select>
+	
+	<insert id="insertPFImage" parameterType="PfImage">
+	 insert into pfimg values(
+	 	#{pfimg_num},
+	 	#{pf_num},
+	 	#{path}
+	 )
+	</insert>
+</mapper> 
+  
