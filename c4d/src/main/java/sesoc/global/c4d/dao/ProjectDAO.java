@@ -12,4 +12,5 @@ public interface ProjectDAO {
 	public List<Career_simple> getUserPJ(String id);
 	public void insertPJ(Project pj);
 	public int getCurrentPjNum();
+	public Project getPj(int project_num);
 }

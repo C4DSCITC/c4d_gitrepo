@@ -28,7 +28,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(HttpSession session) {
-		return "index";
+		session.setAttribute("id", "id1");//일단 userid setting
+		return "redirect:pflist?isMyCv=true";//일단 get 방식으로
 	}
 	
 	
@@ -52,4 +53,5 @@ public class HomeController {
 		
 		return "cv";
 	}
+	
 }

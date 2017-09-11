@@ -36,6 +36,11 @@ public class ProjectDAOImpl implements ProjectDAO {
 		ProjectDAO dao = sqlsession.getMapper(ProjectDAO.class);
 		return dao.getCurrentPjNum();
 	}
+	@Override
+	public Project getPj(int project_num) {
+		ProjectDAO dao = sqlsession.getMapper(ProjectDAO.class);
+		return dao.getPj(project_num);
+	}
 	 
 
 }

@@ -27,5 +27,9 @@
 	<select id="getCurrentPjNum" resultType="int">
 	  select NVL(max(project_num),0) from project
 	</select>
+	
+	<select id="getPj" parameterType="int" resultType="Project">
+	 select * from project where project_num=#{project_num}
+	</select>
 </mapper> 
   

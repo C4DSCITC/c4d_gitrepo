@@ -122,6 +122,7 @@
  
                }
                reader.readAsDataURL(input.files[0]);
+               fd=new FormData();
                fdSetting(input.files);
            }
        }
@@ -159,7 +160,6 @@
 	 
        
        function smtBtnClick(){ //sbmit button click event
-     	  alert("here");
            //save to localStorage ?
 			
            var html="<input id='project_role' type='hidden' value='' name='project_role' />";//role
@@ -171,7 +171,7 @@
 				 
            fd.append('temp',$('#temp').val());
            //ajax로 이루어진 파일 전송 함수를 수행시킨다.
-           sendFileToServer();
+           
 
 
            //send code
@@ -182,9 +182,11 @@
          
            //.submit
            document.getElementById("savepfform").submit();
+           sendFileToServer();
            
        }
        function sendFileToServer(){
+    	   
 			$.ajax({
 			     type : "POST",
 			      url : "saveImage", //Upload URL
@@ -193,11 +195,8 @@
 			      processData : false,
 			      cache : false,
 			      success : function(data) {
-			        if(data) {
-			          alert('성공');
-			        }else {
-			          alert('실패');
-			        }
+			        	//pfnum 재설정 
+			        	
 			      },
 				error:function(){
 					alert("err:saveImage");

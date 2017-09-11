@@ -1,17 +1,17 @@
 package sesoc.global.c4d.vo;
 
-public class PfImage {
-	private String pfimg_num;
+public class PfImg {
+	private int pfimg_num;
 	private int pf_num;
 	private String path;
 	
-	public PfImage(){}
+	public PfImg(){}
 
-	public String getPfimg_num() {
+	public int getPfimg_num() {
 		return pfimg_num;
 	}
 
-	public void setPfimg_num(String pfimg_num) {
+	public void setPfimg_num(int pfimg_num) {
 		this.pfimg_num = pfimg_num;
 	}
 
@@ -33,10 +33,10 @@ public class PfImage {
 
 	@Override
 	public String toString() {
-		return "PfImage [pfimg_num=" + pfimg_num + ", pf_num=" + pf_num + ", path=" + path + "]";
+		return "PfImg [pfimg_num=" + pfimg_num + ", pf_num=" + pf_num + ", path=" + path + "]";
 	}
 
-	public PfImage(String pfimg_num, int pf_num, String path) {
+	public PfImg(int pfimg_num, int pf_num, String path) {
 		super();
 		this.pfimg_num = pfimg_num;
 		this.pf_num = pf_num;

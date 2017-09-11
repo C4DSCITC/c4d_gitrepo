@@ -9,19 +9,47 @@
 	insert into portfolio values(
 		 pf_SEQ.nextval,
 		#{project_num},
-		#{path}
+		#{path},
+		null
 	)
 	</insert>
+	
 	<select id="getCurrentPfNum" resultType="int">
 	  select NVL(max(pf_num),0) from portfolio
 	</select>
 	
-	<insert id="insertPFImage" parameterType="PfImage">
+	<insert id="insertPFImage" parameterType="PfImg">
 	 insert into pfimg values(
-	 	#{pfimg_num},
+	 	pfimg_seq.nextval,
 	 	#{pf_num},
 	 	#{path}
 	 )
 	</insert>
+
+<!-- image가 없는 경우도 일단은 가져옴.... 어떻게 처리하지  -->	
+	<select id="getPfItems" parameterType="string" resultType="PfItem">
+	select portfolio.pf_num,
+	pj.project_title as project_title,
+	pj.field as project_field,
+	pfimg.path as image_path
+	from portfolio, project pj, pfimg
+	where portfolio.project_num=pj.project_num
+	      and portfolio.pf_num=pfimg.pf_num(+) 
+	     <if test="_parameter !=''">
+	     and pj.project_userid=#{_parameter}
+	     </if>
+	order by portfolio.pf_num
+	</select>
+	
+	<select id="getPf" parameterType="int" resultType="Portfolio">
+		select * from portfolio where pf_num=#{pf_num}
+	</select>
+	
+	<update id="resetImgPfNum">
+	 update pfimg
+	 set pf_num= (select NVL(max(pf_num),0) from portfolio)
+	 where pfimg_num=(select NVL(max(pfimg_num),0) from pfimg)
+	</update>
+
 </mapper> 
   
