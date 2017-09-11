@@ -34,14 +34,35 @@
 	 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/ico/apple-touch-icon-114-precomposed.png">
 	 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/ico/apple-touch-icon-72-precomposed.png">
 	 <link rel="apple-touch-icon-precomposed" href="assets/images/ico/apple-touch-icon-57-precomposed.png">
+	 <!-- 20170911 roundSlider CSS -->
+	 <link href="https://cdn.jsdelivr.net/npm/round-slider@1.3/dist/roundslider.min.css" rel="stylesheet" />
 <style>
 .skillPlus:hover{
 	cursor: pointer;
 }
-
+.moreSkillPlus:hover{
+	cursor: pointer;
+}
 .skillappend {
 	margin: 0 auto;
-	width: 80%;
+	width: 200%;
+}
+.rslider {
+  display: inline-block;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+#slider_resp.rs-range-color  {
+    background-color: #68c3a3;
+}
+#slider_resp.rs-path-color  {
+    background-color: #ffffff;
+}
+#slider_resp.rs-handle  {
+    background-color: #f8ce01;
+}
+#slider_resp.rs-border  {
+    background-color: #1a1e23;
 }
 </style>
 </head>
@@ -264,18 +285,23 @@
       <div class="container">
       
         <h2 class="section-title wow fadeInUp skillPlus" data-toggle="modal" data-target="#skillModal">Skills</h2>
-			<div class="skillappend"></div><!-- 사용자가 입력한 스킬이 들어갈 부분 -->
+        	<div class="row">
+         		<div class="col-md-6">
+         	
+					<div class="skillappend"></div><!-- 사용자가 입력한 스킬이 들어갈 부분 -->
 			
+				</div><!-- /.col-md-6 -->
+			</div><!-- /.row -->
         <div class="skill-chart text-center">
-          <h3 class="section-title wow fadeInUp skillPlus" data-toggle="modal" data-target="#moreSkillModal">More skills</h3>
+          <h3 class="section-title wow fadeInUp">More skills</h3>
         </div>
-          <div class="moreSkillappend"></div><!-- 사용자가 입력한 스킬이 들어갈 부분 -->
         <div class="row more-skill text-center">
-          <div class="col-xs-12 col-sm-4 col-md-2">
-              <div class="chart" data-percent="91" data-color="e74c3c">
+
+           <div class="col-xs-12 col-sm-4 col-md-2">
+              <div class="chart moreSkillPlus " data-percent="91" data-color="e74c3c">
                     <span class="percent"></span>
                     <div class="chart-text">
-                      <span contenteditable="true">Responsibility</span>
+                      <span contenteditable="true" >Responsibility</span>
                     </div>
                 </div>
             </div>
@@ -549,7 +575,23 @@
       </div>
     </div>
   </div>
-</div>    
+</div> 
+
+<!-- More Skill -->
+<div class="modal fade" id="moreSkillModal" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal Content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title"> More Skills</h4>
+			</div>
+			<div class="modal-body">
+			<div id= "slider_resp" class="rslider"></div>
+			</div>
+		</div>
+	</div>
+</div>
 	<!-- Javascript files -->
 	<script src="assets/js/jquery.js"></script>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -571,7 +613,11 @@
   <script src="https://cdn.ckeditor.com/4.7.2/standard-all/ckeditor.js"></script>
   <!-- 20170908 jenna kim dialog -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <!-- 20170904 jenna kim save my cv-->
+  <!-- 20170911 jenna kim RoundSlider -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@1.11.3/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/round-slider@1.3/dist/roundslider.min.js"></script>
+  
+  <!-- 20170904 jenna kim skills-->
   <script>
 $(document).ready(function () {
 	var skillInput =$("#skillInput");
@@ -590,11 +636,22 @@ $(document).ready(function () {
 		var skillappend = $(".skillappend");
 		
 		$.each(skillList, function (index, item) {
-		 sList = '<div class="row"><div class="col-md-6"><div class="skill-progress"><div class="skill-title"><h3>'+item.skill_title+'</h3></div><div class="progress"><div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="'+item.skill_num+'" aria-valuemin="0" aria-valuemax="100" style="width: '+item.skill_num+'%;" ><span>'+item.skill_num+'% </span></div></div></div></div>';
+		 sList = '<div class="skill-progress"><div class="skill-title"><h3>'+item.skill_title+'</h3></div><div class="progress"><div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="'+item.skill_num+'" aria-valuemin="0" aria-valuemax="100" style="width: '+item.skill_num+'%;" ><span>'+item.skill_num+'% </span></div></div></div></div>';
 		skillappend.append(sList);
 		$(".skill_title").val(" ");
 		$(".skill_num").val(" ");
 		})
+	})
+	$("#slider_resp").roundSlider({
+		 sliderType: "min-range",
+		    value: 37,
+		    min: 1,
+		    handleSize: "+15",
+		    radius: 80,
+		    width: 10
+	})
+	$(".moreSkillPlus").click(function () {
+		$("#moreSkillModal").modal();
 	})
 }) 
   </script>

@@ -18,6 +18,7 @@ import sesoc.global.c4d.vo.Career;
 import sesoc.global.c4d.vo.Cv;
 import sesoc.global.c4d.vo.Edu;
 import sesoc.global.c4d.vo.Licc;
+import sesoc.global.c4d.vo.Project;
 import sesoc.global.c4d.vo.User;
 
 @Controller
@@ -43,7 +44,7 @@ public class CvController {
 		
 	}
 	
-	//출력용 CV
+	//출력용 CV (유저, 학력, 경력, 자격, 프로젝트 정보를 불러온다)
 	@RequestMapping(value = "cv_download", method = RequestMethod.GET)
 	public String cvdownload(HttpSession session, Model model) {
 		String id = (String) session.getAttribute("id");
@@ -53,19 +54,23 @@ public class CvController {
 		List<Edu>elist = dao.elist(id);
 		List<Career>clist = dao.clist(id);
 		List<Licc>llist = dao.llist(id);
+		List<Project>plist = dao.plist(id);
 		
 		model.addAttribute("user", user);
 		model.addAttribute("elist", elist);
 		model.addAttribute("clist", clist);
 		model.addAttribute("llist", llist);
+		model.addAttribute("plist", plist);
 		
 		System.out.println("☆user확인"+user.toString());
 		System.out.println("☆elist확인"+elist.toString());
 		System.out.println("☆clist확인"+clist.toString());
 		System.out.println("☆llist확인"+llist.toString());
+		System.out.println("☆plist확인"+plist.toString());
 		
 		return "cv_download";
 	}
+	
 	
 	//학력정보를 저장
 	@RequestMapping(value = "cv_edusave", method = RequestMethod.POST)
@@ -117,11 +122,30 @@ public class CvController {
 			licc.setLicc_ref(llist.get(i).getLicc_ref());
 			licc.setLicc_date(llist.get(i).getLicc_date());
 			int result = dao.saveLicc(licc);
-			System.err.println("☆자격저장결과: "+result);
+			System.out.println("☆자격저장결과: "+result);
 			
 		}
 		return "redirect:cv_download";
 	}
+	
+	//프로젝트정보를 저장
+		@RequestMapping(value = "cv_prjsave", method = RequestMethod.POST)
+		public String cv_prjsave(HttpSession session, @RequestBody List<Project> plist, Project project){
+			String id = (String) session.getAttribute("id");
+			CvDAO dao = ss.getMapper(CvDAO.class);
+			
+			for (int i = 0; i < plist.size(); i++) {
+				project.setProject_userid(id);
+				project.setProject_title(plist.get(i).getProject_title());
+				project.setProject_org(plist.get(i).getProject_org());
+				project.setProject_startdate(plist.get(i).getProject_startdate());
+				project.setProject_enddate(plist.get(i).getProject_enddate());
+				int result= dao.savePrj(project);
+				System.out.println("☆프로젝트저장결과: "+result);
+			}
+			return "redirect:cv_download";
+		}
+		
 	//템플릿을 불러옴
 		@RequestMapping(value = "cv_edit1", method = RequestMethod.GET)
 		public String cv_edit(HttpSession session, Model model){

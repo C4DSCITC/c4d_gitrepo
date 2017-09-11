@@ -30,6 +30,7 @@ h1{
 input {
 	width: inherit;
 }
+
 </style>
 
 <!-- 20170830 ajax (리스트추가) -->
@@ -41,11 +42,16 @@ input {
 	$(document).ready(function () {
 		$('#eduplus_btn').hide();
 		$('#edusave_btn').hide();
+		$('#educancel_btn').hide();
 		var edutable = $('#edu_tb');
 		$('#eduedit_btn').click(function () {
 			$('#eduedit_btn').hide();
+			$('#careeredit_btn').hide();
+			$('#liccedit_btn').hide();
+			$('#prjedit_btn').hide();
 			$('#eduplus_btn').show();
 			$('#edusave_btn').show();
+			$('#educancel_btn').show();
 			$(".edu").removeAttr("readonly");
 		})
 		$('#eduplus_btn').click(function () {
@@ -105,7 +111,6 @@ input {
 						alert("다시 시도해주세요.")
 					}else{
 						alert("등록이 완료되었습니다!")
-						callReply();
 						$('#text').val(" ");
 					}
 				}
@@ -114,9 +119,14 @@ input {
 		
 		$('#careerplus_btn').hide();
 		$('#careersave_btn').hide();
+		$('#careercancel_btn').hide();
 		var careertable = $('#career_tb');
 		$('#careeredit_btn').click(function () {
 			$('#careeredit_btn').hide();
+			$('#eduedit_btn').hide();
+			$('#liccedit_btn').hide();
+			$('#prjedit_btn').hide();
+			$('#careercancel_btn').show();
 			$('#careerplus_btn').show();
 			$('#careersave_btn').show();
 			$(".career").removeAttr("readonly");
@@ -173,7 +183,6 @@ input {
 						alert("다시 시도해주세요.")
 					}else{
 						alert("등록이 완료되었습니다!")
-						callReply();
 						$('#text').val(" ");
 					}
 				}
@@ -182,9 +191,14 @@ input {
 		
 		$('#liccplus_btn').hide();
 		$('#liccsave_btn').hide();
+		$('#licccancel_btn').hide();
 		var licctable = $('#licc_tb');
 		$('#liccedit_btn').click(function () {
 			$('#liccedit_btn').hide();
+			$('#eduedit_btn').hide();
+			$('#careeredit_btn').hide();
+			$('#prjedit_btn').hide();
+			$('#licccancel_btn').show();
 			$('#liccplus_btn').show();
 			$('#liccsave_btn').show();
 			$(".licc").removeAttr("readonly");
@@ -233,7 +247,74 @@ input {
 						alert("다시 시도해주세요.")
 					}else{
 						alert("등록이 완료되었습니다!")
-						callReply();
+						$('#text').val(" ");
+					}
+				}
+			});
+		}
+		
+		$('#prjplus_btn').hide();
+		$('#prjsave_btn').hide();
+		$('#prjcancel_btn').hide();
+		var prjtable = $('#prj_tb');
+		$('#prjedit_btn').click(function () {
+			$('#prjedit_btn').hide();
+			$('#eduedit_btn').hide();
+			$('#careeredit_btn').hide();
+			$('#liccedit_btn').hide();
+			$('#prjcancel_btn').show();
+			$('#prjplus_btn').show();
+			$('#prjsave_btn').show();
+			$(".project").removeAttr("readonly");
+		})
+		
+		$('#prjplus_btn').click(function () {
+			prjtable.append('<tr><td height="30px"><input type="text" style="border: 0px; width: 215px; height:20px; padding-left:10px" placeholder="예)도서관리프로그램" class="project_title" name="project_title"></td><td height="30px"><input type="text" style="border: 0px; height:20px; padding-left:10px" placeholder="예)SCITMASTER" class="project_org" name="project_org"></td><td height="30px"><input type="date" style="border: 0px; width: 120px; height:20px; padding-left:10px" class="project_startdate" name="project_startdate"></td><td height="30px"><input type="date" style="border: 0px; width: 120px; height:20px; padding-left:10px" class="project_enddate" name="project_enddate"></td></tr>');
+		})
+		$('#prjsave_btn').on('click', save_prj);
+		
+		function save_prj() {
+			if($('.project_title').val() == ""){
+				alert("프로젝트명을 꼭 입력하세요!");
+				return false;
+			} else if($('.project_org').val() == ""){
+				alert("소속단체명을 꼭 입력하세요!");
+				return false;
+			} else if($('.project_startdate').val() == ""){
+				alert("시작일을 꼭 입력하세요!");
+				return false;
+			} else if($('.project_enddate').val() == ""){
+				alert("종료일을 꼭 입력하세요!");
+				return false;
+			} 
+			
+			var sendprj = [];
+			
+			var project_title = $(".project_title");
+			var project_org = $(".project_org");
+			var project_startdate = $(".project_startdate");
+			var project_enddate = $(".project_enddate");
+			
+			$.each(project_title, function (index, item) {
+				sendprj.push(
+					{"project_title" : $(item).val(),
+					 "project_org" : $(project_org[index]).val(),
+					 "project_startdate" : $(project_startdate[index]).val(),
+					 "project_enddate" : $(project_enddate[index]).val(),
+					}
+				);
+			})
+			
+			$.ajax({
+				method : "post"
+				, url  : "cv_prjsave"
+				, data : JSON.stringify(sendprj)
+				, contentType : 'application/json'
+				, success: function(resp){
+					if(resp == 0){
+						alert("다시 시도해주세요.")
+					}else{
+						alert("등록이 완료되었습니다!")
 						$('#text').val(" ");
 					}
 				}
@@ -245,7 +326,7 @@ input {
 <body>
 	<h1>이력서</h1>
 	
-	<div>
+	<div class="wrapper">
 	<!-- CV 기본정보 부분 -->
 	<table>
 		<tr>
@@ -287,8 +368,8 @@ input {
 			</th>
 		</tr>
 		<tr>
-			<th height="30px">학교명</th>
-			<th height="30px">학과명</th>
+			<th height="30px" width="400px">학교명</th>
+			<th height="30px" width="400px">학과명</th>
 			<th height="30px" colspan="2"  align="center">학업기간</th>
 			<th height="30px">학위</th>
 			<th height="30px">학점</th>
@@ -309,8 +390,9 @@ input {
 	</table>
 	<!-- 20170830 학력사항 행추가 버튼 -->
 	<center>
-			<input type="button" value="항목추가" id="eduplus_btn">
 			<input type="button" value="항목수정" id="eduedit_btn">
+			<a href="cv_download"><input type="button" value="항목취소" id="educancel_btn"></a>
+			<input type="button" value="항목추가" id="eduplus_btn">
 			<input type="button" value="항목저장" id="edusave_btn" >
 	</center>
 	<br>
@@ -320,14 +402,14 @@ input {
 			<th height="30px" colspan="6">경력사항</th>
 		</tr>
 		<tr>
-			<th height="30px" >회사명</th>
-			<th height="30px" >부서명</th>
+			<th height="30px" width="400px">회사명</th>
+			<th height="30px" width="400px">부서명</th>
 			<th height="30px" colspan="2">경력기간</th>
 			<th height="30px" >직위</th>
 		</tr>
 		<c:forEach var="career" items="${clist}" varStatus="stat" >
 		<tr>
-			<td height="30px" width="200px" align="center"><input type="text" class="career" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${career.career_org}"></td>
+			<td height="30px" ><input type="text" class="career" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${career.career_org}"></td>
 			<td height="30px" ><input type="text" class="career" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${career.career_dept}"></td>
 			<td height="30px"><input type="date" class="career" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${career.career_startdate}"></td>
 			<td height="30px"><input type="date" class="career" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${career.career_enddate}"></td>
@@ -337,8 +419,9 @@ input {
 	</table>
 	<!-- 20170830 경력사항 행추가 버튼 -->
 	<center>
-			<input type="button" value="항목추가" id="careerplus_btn">
 			<input type="button" value="항목수정" id="careeredit_btn">
+			<a href="cv_download"><input type="button" value="항목취소" id="careercancel_btn"></a>
+			<input type="button" value="항목추가" id="careerplus_btn">
 			<input type="button" value="항목저장" id="careersave_btn">
 	</center>
 	<br>
@@ -348,32 +431,61 @@ input {
 			<th height="30px" colspan="4" >자격사항</th>
 		</tr>
 		<tr>
-			<th height="30px" >자격증명</th>
-			<th height="30px" >발급기관</th>
-			<th height="30px" >취득일</th>
-			<th height="30px" >비고</th>
+			<th height="30px"  width="400px">자격증명</th>
+			<th height="30px"  width="400px">발급기관</th>
+			<th height="30px" width="150px">취득일</th>
+			<th height="30px" width="50px">비고</th>
 		</tr>
 		<c:forEach var="licc" items="${llist}" varStatus="stat" >
 		<tr>
-			<td height="30px" align="center"><input type="text" class="licc" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${licc.licc_title}"></td>
-			<td height="30px" align="center"><input type="text" class="licc" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${licc.licc_org}"></td>
-			<td height="30px" align="center"><input type="date" class="licc" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${licc.licc_date}"></td>
-			<td height="30px" align="center"><input type="text" class="licc" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${licc.licc_ref}"></td>
+			<td height="30px"><input type="text" class="licc" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${licc.licc_title}"></td>
+			<td height="30px"><input type="text" class="licc" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${licc.licc_org}"></td>
+			<td height="30px"><input type="date" class="licc" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${licc.licc_date}"></td>
+			<td height="30px"><input type="text" class="licc" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${licc.licc_ref}"></td>
 		</tr>
 		</c:forEach>
 	</table>
 	<!-- 20170830 자격사항 행추가 버튼 -->
 	<center>
-			<input type="button" value="항목추가" id="liccplus_btn">
 			<input type="button" value="항목수정" id="liccedit_btn">
+			<a href="cv_download"><input type="button" value="항목취소" id="licccancel_btn"></a>
+			<input type="button" value="항목추가" id="liccplus_btn">
 			<input type="button" value="항목저장" id="liccsave_btn">
 	</center>
 	<br>
+	<!-- CV 프로젝트 부분 -->
+	<table id="prj_tb">
+		<tr>
+			<th height="30px" colspan="4" >프로젝트</th>
+		</tr>
+		<tr>
+			<th height="30px" width="400px">프로젝트명</th>
+			<th height="30px" width="400px">소속기관</th>
+			<th height="30px" colspan="2">프로젝트기간</th>
+		</tr>
+		<c:forEach var="project" items="${plist}" varStatus="stat" >
+		<tr>
+			<td height="30px"><input type="text" class="project" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${project.project_title}"></td>
+			<td height="30px"><input type="text" class="project" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${project.project_org}"></td>
+			<td height="30px"><input type="date" class="project" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${project.project_startdate}"></td>
+			<td height="30px"><input type="date" class="project" style="border: none; padding-left: 10px; font-size: medium;" height="30px" readonly="readonly" value="${project.project_enddate}"></td>
+		</tr>
+		</c:forEach>
+	</table>
+	<!-- 20170911 프로젝트 행추가 버튼 -->
+	<center>
+			<input type="button" value="항목수정" id="prjedit_btn">
+			<a href="cv_download"><input type="button" value="항목취소" id="prjcancel_btn"></a>
+			<input type="button" value="항목추가" id="prjplus_btn">
+			<input type="button" value="항목저장" id="prjsave_btn">
+	</center>
+	</div> <!-- wrapper end -->
+	<br>
+		<div>
 		<center>
 			<a href="pdf"><input type="button" value="PDF로 저장하기"></a>
 			<a href="${pageContext.request.contextPath}/"><input type="button" value="메인화면으로 돌아가기"></a>
 		</center>
-	</div>
-<body>
+		</div>
 </body>
 </html>

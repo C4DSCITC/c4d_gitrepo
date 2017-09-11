@@ -7,6 +7,7 @@ import sesoc.global.c4d.vo.Career;
 import sesoc.global.c4d.vo.Cv;
 import sesoc.global.c4d.vo.Edu;
 import sesoc.global.c4d.vo.Licc;
+import sesoc.global.c4d.vo.Project;
 import sesoc.global.c4d.vo.User;
 
 public interface CvDAO {
@@ -25,6 +26,8 @@ public interface CvDAO {
 	public int saveCareer(Career career);
 	//입력받은 자격정보 DB저장
 	public int saveLicc(Licc licc);
+	//입력받은 프로젝트정보 DB저장
+	public int savePrj(Project prj);
 	
 	//이력서폼에 뿌려줄 개인 정보
 	public User findOne(String id);
@@ -34,11 +37,15 @@ public interface CvDAO {
 	public List<Career> clist(String id);
 	//이력서폼에 뿌려줄 자격정보
 	public List<Licc> llist(String id);
+	//이력서폼에 뿌려줄 프로젝트정보
+	public List<Project> plist(String id);
 	
 	//선택한 학력정보 DB에서 삭제
 	public int deleteEdu(Edu edu);
 	//선택한 경력정보 DB에서 삭제
 	public int deleteCareer(Career career);
-	//선택한 학력정보 DB에서 삭제
+	//선택한 자력정보 DB에서 삭제
 	public int deleteLicc(Licc licc);
+	//선택한 자격정보 DB에서 삭제
+	public int deletePrj(Project prj);
 }

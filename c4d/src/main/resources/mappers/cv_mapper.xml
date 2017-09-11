@@ -54,15 +54,27 @@
 </select>
 
 <!-- 인쇄용 이력서에 뿌릴 자격 정보 -->
-<select id="llist" parameterType="String" resultType="Licc">
+<select id="llist" parameterType="String" resultType="licc">
 	select 
-	license_title, 
-	license_org, 
-	license_ref, 
-	to_char(license_date, 'yyyy-mm-dd') license_date
+	license_title as licc_title, 
+	license_org as licc_org, 
+	license_ref as licc_ref, 
+	to_char(license_date, 'yyyy-mm-dd') licc_date
 	from license
 	where license_userid = #{id}
 	order by license_date
+</select>
+
+<!-- 인쇄용 이력서에 뿌릴 프로젝트 정보 -->
+<select id="plist" parameterType="String" resultType="project">
+	select 
+	project_title, 
+	project_org,  
+	to_char(project_startdate, 'yyyy-mm-dd') project_startdate,
+	to_char(project_enddate, 'yyyy-mm-dd') project_enddate
+	from project
+	where project_userid = #{id}
+	order by project_startdate
 </select>
 
 <!-- 입력받은 학력정보 DB에 저장 -->
@@ -111,7 +123,7 @@
 		, #{career_org}
 		, #{career_dept}
 		, #{career_startdate}
-		, #{career_enddate}
+		, #{career_endwdate}
 	)
 </insert>	
 
@@ -137,7 +149,29 @@
 	)
 </insert>	
 
-<!-- wev CV 경로 DB에 저장하기 -->
+<!-- 입력받은 프로젝트정보 DB에 저장 -->
+<insert id="savePrj" parameterType="project">
+	insert into project
+	(
+		project_num
+		, project_userid
+		, project_title
+		, project_org
+		, project_startdate
+		, project_enddate
+	)
+	values
+	(
+		project_seq.nextval
+		, #{project_userid}
+		, #{project_title}
+		, #{project_org}
+		, #{project_startdate}
+		, #{project_enddate}
+	)
+</insert>
+
+<!-- web CV 경로 DB에 저장하기 -->
 <insert id="saveWebCv" parameterType="cv">
  insert into cv
  (
@@ -167,6 +201,12 @@ where career_num = #{career_num}
 <delete id="deleteLicc" parameterType="Licc">
 delete from license
 where license_num = #{license_num}
+</delete>
+
+<!-- 선택한 프로젝트정보 삭제 -->
+<delete id="deletePrj" parameterType="Project">
+delete from project
+where project_num = #{project_num}
 </delete>
 
 </mapper> 
