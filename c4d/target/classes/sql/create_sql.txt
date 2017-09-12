@@ -1,0 +1,195 @@
+
+
+/* Create Tables */
+drop table cv;
+CREATE TABLE cv
+(   cv_userid varchar2(20) NOT NULL,
+   cv_savedpath varchar2(100) ,
+   PRIMARY KEY (cv_userid)
+);
+
+drop table career;
+CREATE TABLE career
+(
+	career_num number NOT NULL,
+	career_userid varchar2(20) NOT NULL,
+	career_title varchar2(60) NOT NULL,
+	career_org varchar2(30) NOT NULL,
+	career_dept varchar2(30) NOT NULL,
+	career_startdate date NOT NULL,
+	career_enddate date NOT NULL,
+	PRIMARY KEY (career_num)
+);
+
+
+drop table code;
+CREATE TABLE code
+(
+	code_num number NOT NULL,
+	code_userid varchar2(20) NOT NULL,
+	code_title varchar2(60),
+	code_savedpath varchar2(100),
+	PRIMARY KEY (code_num)
+);
+
+drop table education;
+CREATE TABLE education
+(
+	edu_num number NOT NULL,
+	edu_userid varchar2(20) NOT NULL,
+	edu_school varchar2(50) NOT NULL,
+	edu_major varchar2(30) NOT NULL,
+	edu_degree varchar2(30) NOT NULL,
+	edu_gpa number NOT NULL,
+	edu_startdate date NOT NULL,
+	edu_enddate date NOT NULL,
+	PRIMARY KEY (edu_num)
+);
+
+drop table license;
+CREATE TABLE license
+(
+	license_num number NOT NULL,
+	license_userid varchar2(20) NOT NULL,
+	license_title varchar2(60) NOT NULL,
+	license_org varchar2(30) NOT NULL,
+	license_ref varchar2(30),
+	license_date date NOT NULL,
+	PRIMARY KEY (license_num)
+);
+
+drop table project;
+CREATE TABLE project
+(
+	project_num number NOT NULL,
+	project_userid varchar2(20) NOT NULL,
+	project_title varchar2(60),
+	project_role varchar2(30),
+	project_org varchar2(30),
+	project_startdate date,
+	project_enddate date,
+	PRIMARY KEY (project_num)
+);
+
+drop table resume_answer;
+CREATE TABLE resume_answer
+(
+	res_ans_num number NOT NULL,
+	res_ans_id varchar2(20) NOT NULL,
+	res_ans_title varchar2(100),
+	res_ans_content varchar2(2000),
+	PRIMARY KEY (res_ans_num)
+);
+
+
+drop table resume_merged_value;
+CREATE TABLE resume_merged_value
+(
+	res_mv_num number NOT NULL,
+	res_mv_mknum number NOT NULL,
+	res_mv_qtitle varchar2(100) NOT NULL,
+	res_mv_content varchar2(2000) NOT NULL,
+	res_mv_order number NOT NULL,
+	PRIMARY KEY (res_mv_num)
+);
+ 
+drop table resume_merged_key;
+CREATE TABLE resume_merged_key
+(
+	res_mk_num number NOT NULL,
+	res_mk_userid varchar2(20) NOT NULL,
+	res_mk_title varchar2(100),
+	PRIMARY KEY (res_mk_num)
+);
+
+drop table users;
+CREATE TABLE users
+(
+	id varchar2(20) NOT NULL,
+	password varchar2(20) NOT NULL,
+	name varchar2(20) NOT NULL,
+	email varchar2(40) NOT NULL,
+	birthdate date,
+	age number,
+	address varchar2(300) ,
+	tel varchar2(30),
+	gender char(3),
+	field varchar2(20),
+	language varchar2(20),
+	image varchar2(300),
+	PRIMARY KEY (id)
+);
+
+
+
+/* Create Foreign Keys */
+
+ALTER TABLE resume_merged_value
+	ADD FOREIGN KEY (res_mv_mknum)
+	REFERENCES resume_merged_key (res_mk_num)
+;
+
+ALTER TABLE career
+	ADD FOREIGN KEY (career_userid)
+	REFERENCES users (id)
+;
+
+
+ALTER TABLE code
+	ADD FOREIGN KEY (code_userid)
+	REFERENCES users (id)
+;
+
+
+ALTER TABLE education
+	ADD FOREIGN KEY (edu_userid)
+	REFERENCES users (id)
+;
+
+
+ALTER TABLE license
+	ADD FOREIGN KEY (license_userid)
+	REFERENCES users (id)
+;
+
+
+ALTER TABLE project
+	ADD FOREIGN KEY (career_userid)
+	REFERENCES users (id)
+;
+
+
+ALTER TABLE resume_answer
+	ADD FOREIGN KEY (res_ans_id)
+	REFERENCES users (id)
+;
+
+
+ALTER TABLE resume_merged_key
+	ADD FOREIGN KEY (res_mk_userid)
+	REFERENCES users (id)
+;
+alter table cv
+ ADD FOREIGN KEY (cv_userid)
+   REFERENCES users (id)
+;
+
+drop SEQUENCE PROJECT_SEQ ;
+drop SEQUENCE CAREER_SEQ ;
+drop SEQUENCE EDU_SEQ ;
+drop SEQUENCE LICENSE_SEQ ;
+drop SEQUENCE RES_Q_SEQ ;
+drop SEQUENCE RES_ANST_SEQ ;
+drop SEQUENCE RES_MK_SEQ;
+drop SEQUENCE RES_MV_SEQ;
+drop SEQUENCE CODE_SEQ ;
+
+create sequence pftem_seq;
+CREATE SEQUENCE PROJECT_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE CAREER_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE EDU_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE LICENSE_SEQ START WITH 1 INCREMENT BY 1; 
+CREATE SEQUENCE RES_ANS_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE RES_MK_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE RES_MV_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE CODE_SEQ START WITH 1 INCREMENT BY 1;

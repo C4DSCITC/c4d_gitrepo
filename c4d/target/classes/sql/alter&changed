@@ -1,0 +1,37 @@
+CREATE TABLE license
+(
+   license_num number NOT NULL,
+   license_userid varchar2(20) NOT NULL,
+   license_title varchar2(60) NOT NULL,
+   license_org varchar2(30) NOT NULL,
+   license_ref varchar2(30),
+   license_date date NOT NULL,
+   PRIMARY KEY (license_num)
+);
+
+alter table project add
+ (language varchar2(100),
+  field varchar2(20),
+  description varchar2(1000));
+   
+ 
+ 
+ CREATE TABLE PORTFOLIO (
+  pf_num number,
+  project_num number,
+  path varchar2(300)
+ );
+ create sequence pf_seq;
+ 
+ ALTER TABLE portfolio
+ADD PRIMARY KEY (pf_num); 
+
+ALTER TABLE portfolio
+	ADD FOREIGN KEY (project_num)
+	REFERENCES project (project_num)
+;
+ 
+ create table pfimg(
+  pfimg_num varchar2(40) primary key,
+  pf_num number references portfolio(pf_num),
+  path varchar2(300));

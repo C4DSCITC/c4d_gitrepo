@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sesoc.global.c4d.dao.CvDAO">
+
+<!-- 로그인 (준환이 부분 오면 삭제 예정) -->
+<select id="loginOne" parameterType="map" resultType="User">
+	select *
+	from users
+	where id = #{id}
+	and password = #{password}
+</select>
+
+<!-- DB에 저장된 web CV path조회 -->
+<select id="findCV" parameterType="String" resultType="Cv">
+	select cv_savedpath
+	from cv
+	where cv_userid = #{id}
+</select>
+
+<!-- 인쇄용 이력서에 뿌릴 개인 정보 -->
+<select id="findOne" parameterType="String" resultType="User">
+	select name, email, to_char(birthdate, 'yyyy-mm-dd') birthdate, age, address, tel, gender, image
+	from users
+	where id = #{id}
+</select>
+
+<!--이력서에 뿌릴 학력 정보 -->
+ <select id="elist" parameterType="String" resultType="Edu">
+	select 
+		edu_school
+		, edu_major
+		, edu_degree
+		, edu_gpa
+		, to_char(edu_startdate, 'yyyy-mm-dd') edu_startdate
+		, to_char(edu_enddate, 'yyyy-mm-dd') edu_enddate
+	from education
+		where edu_userid = #{id}
+	order by edu_startdate
+</select> 
+
+<!-- 인쇄용 이력서에 뿌릴 경력 정보 -->
+<select id="clist" parameterType="String" resultType="Career">
+	select 
+	career_org, 
+	career_dept, 
+	to_char(career_startdate,'yyyy-mm-dd') career_startdate, 
+	to_char(career_enddate,'yyyy-mm-dd')career_enddate,
+	career_title
+	from career
+	where career_userid = #{id}
+	order by career_startdate
+</select>
+
+<!-- 인쇄용 이력서에 뿌릴 자격 정보 -->
+<select id="llist" parameterType="String" resultType="licc">
+	select 
+	license_title as licc_title, 
+	license_org as licc_org, 
+	license_ref as licc_ref, 
+	to_char(license_date, 'yyyy-mm-dd') licc_date
+	from license
+	where license_userid = #{id}
+	order by license_date
+</select>
+
+<!-- 인쇄용 이력서에 뿌릴 프로젝트 정보 -->
+<select id="plist" parameterType="String" resultType="project">
+	select 
+	project_title, 
+	project_org,  
+	to_char(project_startdate, 'yyyy-mm-dd') project_startdate,
+	to_char(project_enddate, 'yyyy-mm-dd') project_enddate
+	from project
+	where project_userid = #{id}
+	order by project_startdate
+</select>
+
+<!-- 입력받은 학력정보 DB에 저장 -->
+<insert id="saveEdu" parameterType="edu">
+	insert into education
+	(
+		edu_num
+		, edu_userid
+		, edu_school
+		, edu_major
+		, edu_degree
+		, edu_gpa
+		, edu_startdate
+		, edu_enddate
+	)
+	values
+	(
+		edu_seq.nextval
+		, #{edu_userid}
+		, #{edu_school}
+		, #{edu_major}
+		, #{edu_degree}
+		, #{edu_gpa}
+		, #{edu_startdate}
+		, #{edu_enddate}
+	)
+</insert>
+
+<!-- 입력받은 경력정보 DB에 저장 -->
+<insert id="saveCareer" parameterType="career">
+	insert into career
+	(
+		career_num
+		, career_userid
+		, career_title
+		, career_org
+		, career_dept
+		, career_startdate
+		, career_enddate
+	)
+	values
+	(
+		career_seq.nextval
+		, #{career_userid}
+		, #{career_title}
+		, #{career_org}
+		, #{career_dept}
+		, #{career_startdate}
+		, #{career_endwdate}
+	)
+</insert>	
+
+<!-- 입력받은 자격정보 DB에 저장 -->
+<insert id="saveLicc" parameterType="licc">
+	insert into license
+	(
+		license_num
+		, license_userid
+		, license_title
+		, license_org
+		, license_ref
+		, license_date
+	)
+	values
+	(
+		license_seq.nextval
+		, #{licc_userid}
+		, #{licc_title}
+		, #{licc_org}
+		, #{licc_ref}
+		, #{licc_date}
+	)
+</insert>	
+
+<!-- 입력받은 프로젝트정보 DB에 저장 -->
+<insert id="savePrj" parameterType="project">
+	insert into project
+	(
+		project_num
+		, project_userid
+		, project_title
+		, project_org
+		, project_startdate
+		, project_enddate
+	)
+	values
+	(
+		project_seq.nextval
+		, #{project_userid}
+		, #{project_title}
+		, #{project_org}
+		, #{project_startdate}
+		, #{project_enddate}
+	)
+</insert>
+
+<!-- web CV 경로 DB에 저장하기 -->
+<insert id="saveWebCv" parameterType="cv">
+ insert into cv
+ (
+ 	cv_userid
+ 	, cv_savedpath
+ )
+ values
+ (
+ 	#{cv_userid}
+ 	,cv_savedpath
+ )
+</insert>
+
+<!-- 선택한 학력정보 삭제 -->
+<delete id="deleteEdu" parameterType="Edu">
+delete from education
+where edu_num = #{edu_num}
+</delete>
+
+<!-- 선택한 경력정보 삭제 -->
+<delete id="careerEdu" parameterType="Career">
+delete from career
+where career_num = #{career_num}
+</delete>
+
+<!-- 선택한 학력정보 삭제 -->
+<delete id="deleteLicc" parameterType="Licc">
+delete from license
+where license_num = #{license_num}
+</delete>
+
+<!-- 선택한 프로젝트정보 삭제 -->
+<delete id="deletePrj" parameterType="Project">
+delete from project
+where project_num = #{project_num}
+</delete>
+
+</mapper> 
+  
