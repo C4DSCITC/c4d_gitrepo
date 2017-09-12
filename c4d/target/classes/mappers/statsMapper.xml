@@ -40,6 +40,13 @@
  	 FROM career
  	 group by career_userid 
 	</select>
-
+	
+	<select id="getVisitCnt" resultType="map" parameterType="string">
+	SELECT to_number(to_char(to_date(to_char(visitdate, 'yyyymmdd'), 'yyyymmdd') - to_date(to_char(sysdate, 'yyyymmdd'), 'yyyymmdd'))) "visitdate", cnt
+	FROM dual,visitcnt
+	where to_id=#{id}
+	order by visitdate desc
+	</select>
+	
 </mapper> 
   

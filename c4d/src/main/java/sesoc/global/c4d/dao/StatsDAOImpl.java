@@ -45,6 +45,7 @@ public class StatsDAOImpl implements StatsDAO {
 		List<Integer> list=dao.getWorkYearsAll();
 		return list;
 	}
+	@Override
 	public List<Integer> getSumWorkYearsAll() {
 		StatsDAO dao=sqlsession.getMapper(StatsDAO.class);
 		return dao.getSumWorkYearsAll();
@@ -54,7 +55,15 @@ public class StatsDAOImpl implements StatsDAO {
 		StatsDAO dao=sqlsession.getMapper(StatsDAO.class);
 		return dao.getSumWorkYearsByID(id);
 	}
-
+	@Override
+	public List<Map<String, Integer>> getVisitCnt(String loginedID) {
+		StatsDAO dao=sqlsession.getMapper(StatsDAO.class);
+		List<Map<String, Integer>> list= dao.getVisitCnt(loginedID);
+		System.out.println();
+		System.out.println(list);
+		return list;
+	}
+	
 
 	
 

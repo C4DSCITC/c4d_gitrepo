@@ -14,14 +14,18 @@
  	<typeAlias type="sesoc.global.c4d.vo.EveryECL" alias="EveryECL"/>
  	<typeAlias type="sesoc.global.c4d.vo.Licc" alias="Licc"/>
  	<typeAlias type="sesoc.global.c4d.vo.LiccList" alias="LiccList"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Portfolio" alias="Portfolio"/>
  	<typeAlias type="sesoc.global.c4d.vo.Project" alias="Project"/>
  	<typeAlias type="sesoc.global.c4d.vo.PrjList" alias="PrjList"/>
  	<typeAlias type="sesoc.global.c4d.vo.User" alias="User"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.PfImg" alias="PfImg"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.PfItem" alias="PfItem"/>
  </typeAliases>
   <mappers> 
   	<mapper resource="mappers/cv_mapper.xml"/>
   	<mapper resource="mappers/statsMapper.xml"></mapper>
   	<mapper resource="mappers/careerMapper.xml"></mapper>
   	<mapper resource="mappers/projectMapper.xml"></mapper>
+  	<mapper resource="mappers/portfolioMapper.xml"></mapper>
   </mappers>
-</configuration>
+</configuration> 

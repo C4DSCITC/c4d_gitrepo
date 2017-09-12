@@ -8,5 +8,6 @@ public interface StatsService {
 
 	public float getAvgWorkYears(String loginedID);
 	public float getSumWorkYears(String loginedID);
- 
+
+	public List<Map<String, Object>> getVisitCnt(String loginedID);
 }

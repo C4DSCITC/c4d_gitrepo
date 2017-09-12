@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import sesoc.global.c4d.vo.Career_simple;
+import sesoc.global.c4d.vo.Project;
 
 //created by seongmin woo
 //0829
@@ -22,5 +23,24 @@ public class ProjectDAOImpl implements ProjectDAO {
 		System.out.println("dao" + list);
 		return list;
 	}
+//0909
+	@Override
+	public void insertPJ(Project pj) {
+		// TODO Auto-generated method stub
+		ProjectDAO dao = sqlsession.getMapper(ProjectDAO.class);
+		dao.insertPJ(pj);
+		
+	}
+	@Override
+	public int getCurrentPjNum() {
+		ProjectDAO dao = sqlsession.getMapper(ProjectDAO.class);
+		return dao.getCurrentPjNum();
+	}
+	@Override
+	public Project getPj(int project_num) {
+		ProjectDAO dao = sqlsession.getMapper(ProjectDAO.class);
+		return dao.getPj(project_num);
+	}
+	 
 
 }

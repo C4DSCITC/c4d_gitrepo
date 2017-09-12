@@ -1,5 +1,7 @@
 package sesoc.global.c4d;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import sesoc.global.c4d.dao.CvDAO;
 import sesoc.global.c4d.dao.CvService;
+import sesoc.global.c4d.dao.StatsDAO;
 import sesoc.global.c4d.vo.Career;
 import sesoc.global.c4d.vo.Cv;
 import sesoc.global.c4d.vo.Edu;
@@ -44,17 +47,19 @@ public class CvController {
 		
 	}
 	
-	//출력용 CV (유저, 학력, 경력, 자격, 프로젝트 정보를 불러온다)
+	//출력용 CV (유저, 학력, 경력, 자격, 프로젝트 정보, 근무기간을 불러온다)
 	@RequestMapping(value = "cv_download", method = RequestMethod.GET)
 	public String cvdownload(HttpSession session, Model model) {
 		String id = (String) session.getAttribute("id");
 		System.out.println("☆Jenna alert: cv_download도착성공!");
 		CvDAO dao = ss.getMapper(CvDAO.class);
+		
 		User user = dao.findOne(id);
 		List<Edu>elist = dao.elist(id);
 		List<Career>clist = dao.clist(id);
 		List<Licc>llist = dao.llist(id);
 		List<Project>plist = dao.plist(id);
+		
 		
 		model.addAttribute("user", user);
 		model.addAttribute("elist", elist);
@@ -62,11 +67,13 @@ public class CvController {
 		model.addAttribute("llist", llist);
 		model.addAttribute("plist", plist);
 		
+		
 		System.out.println("☆user확인"+user.toString());
 		System.out.println("☆elist확인"+elist.toString());
 		System.out.println("☆clist확인"+clist.toString());
 		System.out.println("☆llist확인"+llist.toString());
 		System.out.println("☆plist확인"+plist.toString());
+		
 		
 		return "cv_download";
 	}
@@ -146,7 +153,7 @@ public class CvController {
 			return "redirect:cv_download";
 		}
 		
-	//템플릿을 불러옴
+	//템플릿에 유저정보, 학력정보, 경력정보, 근무기간을 불러옴
 		@RequestMapping(value = "cv_edit1", method = RequestMethod.GET)
 		public String cv_edit(HttpSession session, Model model){
 			System.out.println("☆Jenna alert: cv_edit도착성공!");
@@ -154,14 +161,17 @@ public class CvController {
 			
 			String id = (String) session.getAttribute("id");
 			CvDAO dao = ss.getMapper(CvDAO.class);
+			StatsDAO sdao = ss.getMapper(StatsDAO.class);
 			
 			User user = dao.findOne(id);
 			List<Edu>elist = dao.elist(id);
 			List<Career>clist = dao.clist(id);
+			int workyears =  sdao.getSumWorkYearsByID(id);
 			System.out.println("☆Jenna alert:"+user.toString());
 			model.addAttribute("user", user);
 			model.addAttribute("elist", elist);
 			model.addAttribute("clist", clist);
+			model.addAttribute("workyears", workyears);
 			return "cv1_edit";
 		}
 		

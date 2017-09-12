@@ -34,21 +34,19 @@ $(function() {
 				langdata=data
 			Morris.Donut({
 		        element: 'morris-donut-chart2',
-		        resize: true,
 		        data: langdata,
 		        resize: true
 		    });
-		    $(window).on('resize', function() {
-		        if (!window.recentResize) {
-		           window.m.redraw();
-		           window.recentResize = true;
-		           setTimeout(function(){ window.recentResize = false; }, 200);
-		        }
-		     });
+		    
 		}
 		,error : function(){ alert("error");}
 			
 	})
 	
-    
+	Morris.Donut({
+        element: 'morris-donut-chart3',
+        resize: true,
+        data: langdata,
+        display: hidden
+    });
 }); 

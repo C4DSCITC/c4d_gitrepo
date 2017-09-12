@@ -8,5 +8,28 @@
 	 from project ,dual
 	 where project_userid=#{id}
 	</select>
+	
+	<insert id="insertPJ" parameterType="Project">
+	insert into project values(
+		 PROJECT_SEQ.nextval,
+		#{project_userid},
+		#{project_title},
+		#{project_role},
+		#{project_org},
+		sysdATE,SYSDATE,
+		<!-- #{project_startdate},
+		#{project_enddate}, -->
+		#{language},
+		#{field},
+		#{description}
+	)
+	</insert>
+	<select id="getCurrentPjNum" resultType="int">
+	  select NVL(max(project_num),0) from project
+	</select>
+	
+	<select id="getPj" parameterType="int" resultType="Project">
+	 select * from project where project_num=#{project_num}
+	</select>
 </mapper> 
   

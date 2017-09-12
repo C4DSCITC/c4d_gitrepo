@@ -12,6 +12,7 @@ import sesoc.global.c4d.dao.CareerDAO;
 import sesoc.global.c4d.dao.ProjectDAO;
 import sesoc.global.c4d.vo.Career;
 import sesoc.global.c4d.vo.Career_simple;
+import sesoc.global.c4d.vo.Project;
 @Service
 public class ProjectServiceImpl implements ProjectService {
 	@Autowired
@@ -23,5 +24,17 @@ public class ProjectServiceImpl implements ProjectService {
 		return list;
 	}
 
+	@Override
+	public void insertPJ(Project pj) {
+		 pdao.insertPJ(pj); 
+		 return;
+	}
+
+	@Override
+	public int getCurrentPjNum() {
+	return pdao.getCurrentPjNum();
+	}
+	
+	
 	
 }

@@ -75,6 +75,7 @@ $(function(){
     		    };
        chart.draw(dataTable,options);
      }
+	 
  });
  
      

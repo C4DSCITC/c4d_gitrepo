@@ -500,11 +500,12 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
+            <center>
               <div class="count-wrap">
                 <div class="col-sm-3 col-xs-6">
                   <i class="fa fa-flask"></i>
                   <h3 class="timer">
-                  <span class="editText" id="years_Exp"> 7</span>
+                  <span class="editText" id="years_Exp">${workyears}</span>
                   </h3>
                   <p contenteditable="true">Years of Experience</p>
                 </div>
@@ -515,13 +516,13 @@
                   </h3>                
                   <p contenteditable="true">Projects Done</p>
                 </div>
-                <div class="col-sm-3 col-xs-6">
+                 <div class="col-sm-3 col-xs-6">
                   <i class="fa fa-trophy"></i>
                   <h3 class="timer">
                   <span class="editText" id="number_won"> 5 </span>
                   </h3> 
-                  <p contenteditable="true">Awards Won</p>
-                </div>
+                  <p contenteditable="true">Available Language</p>
+                </div> 
                 <div class="col-sm-3 col-xs-6">
                   <i class="fa fa-users"></i>
                   <!-- ☆오늘 방문자수 입력예정 -->
@@ -529,6 +530,7 @@
                   <p contenteditable="true">Visited Today</p>
                 </div>
               </div><!-- /count-wrap -->
+              </center>
             </div><!-- /.col-md-12 -->
           </div><!-- /.row -->
         </div><!-- /.container -->

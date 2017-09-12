@@ -1,7 +1,5 @@
 package sesoc.global.c4d.vo;
 
-import java.util.Date;
-
 public class Project {
    private int project_num;
    private String project_userid;
