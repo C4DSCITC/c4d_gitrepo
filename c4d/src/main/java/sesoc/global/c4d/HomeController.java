@@ -30,13 +30,13 @@ public class HomeController {
 	}
 	
 	//로그인 테스트용 준환이 코드 오면 지울 예정
-	@RequestMapping(value = "login", method = RequestMethod.GET)
+	/*@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login(){
 		return "login";
-	}
+	}*/
 	
 	//로그인테스트용 준환이 코드 오면 지울 예정
-	@RequestMapping(value = "login", method = RequestMethod.POST)
+	/*@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(String id, String password, HttpSession session){
 		CvDAO  dao = ss.getMapper(CvDAO.class);
 		Map<String, String> map = new HashMap<>();
@@ -48,6 +48,6 @@ public class HomeController {
 		session.setAttribute("name", user.getName());
 		
 		return "redirect:/";
-	}
+	}*/
 	
 }

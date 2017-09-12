@@ -1,39 +1,42 @@
 package sesoc.global.c4d.vo;
 
 public class User {
+
 	private String id;
 	private String password;
 	private String name;
 	private String email;
 	private String birthdate;
-	private int age;
 	private String address;
 	private String tel;
 	private String gender;
 	private String field;
 	private String language;
+	private int age;
 	private String image;
 	
 	public User() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public User(String id, String password, String name, String email, String birthdate, int age, String address,
-			String tel, String gender, String field, String language, String image) {
-		super();
+	public User(String id, String password, String name, String email, String birthdate, String address, String tel,
+			String gender, String field, String language, int age, String image) {
+
 		this.id = id;
 		this.password = password;
 		this.name = name;
 		this.email = email;
 		this.birthdate = birthdate;
-		this.age = age;
 		this.address = address;
 		this.tel = tel;
 		this.gender = gender;
 		this.field = field;
 		this.language = language;
+		this.age = age;
 		this.image = image;
 	}
+
+
 
 	public String getId() {
 		return id;
@@ -75,14 +78,6 @@ public class User {
 		this.birthdate = birthdate;
 	}
 
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
 	public String getAddress() {
 		return address;
 	}
@@ -107,6 +102,7 @@ public class User {
 		this.gender = gender;
 	}
 
+	
 	public String getField() {
 		return field;
 	}
@@ -123,6 +119,14 @@ public class User {
 		this.language = language;
 	}
 
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
 	public String getImage() {
 		return image;
 	}
@@ -134,8 +138,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", password=" + password + ", name=" + name + ", email=" + email + ", birthdate="
-				+ birthdate + ", age=" + age + ", address=" + address + ", tel=" + tel + ", gender=" + gender
-				+ ", field=" + field + ", language=" + language + ", image=" + image + "]";
+				+ birthdate + ", address=" + address + ", tel=" + tel + ", gender=" + gender + ", field=" + field
+				+ ", language=" + language + ", age=" + age + ", image=" + image + "]";
 	}
 	
 }

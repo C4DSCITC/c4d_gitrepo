@@ -20,6 +20,7 @@
  	<typeAlias type="sesoc.global.c4d.vo.User" alias="User"/>
  	<typeAlias type="sesoc.global.c4d.vo.PfImg" alias="PfImg"/>
  	<typeAlias type="sesoc.global.c4d.vo.PfItem" alias="PfItem"/>
+ 	<typeAlias type="sesoc.global.c4d.vo.Resume" alias="Resume"/>
  </typeAliases>
   <mappers> 
   	<mapper resource="mappers/cv_mapper.xml"/>
@@ -27,5 +28,7 @@
   	<mapper resource="mappers/careerMapper.xml"></mapper>
   	<mapper resource="mappers/projectMapper.xml"></mapper>
   	<mapper resource="mappers/portfolioMapper.xml"></mapper>
+  	<mapper resource="mappers/userMapper.xml"/> 
+  	<mapper resource="mappers/resumeMapper.xml"/>
   </mappers>
 </configuration> 

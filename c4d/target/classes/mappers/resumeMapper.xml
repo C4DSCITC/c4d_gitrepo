@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="sesoc.global.c4d.dao.ResumeDao">
+  	<insert id="insert" parameterType="Resume">
+  		insert into resume_answer
+  		(
+  			res_ans_num, res_ans_id, res_ans_title, res_ans_sort, res_ans_content
+  		)
+  		values
+  		(
+  			RES_ANS_SEQ.nextval, #{res_ans_id}, #{res_ans_title}, #{res_ans_sort}, #{res_ans_content}
+  		)
+  	</insert>
+  	<select id="selectOne" parameterType="Resume" resultType="Resume">
+  		select *
+  		from resume_answer
+  		where res_ans_num = #{res_ans_num}
+  	</select>
+  	<select id="select" parameterType="Resume" resultType="Resume">
+  		select *
+  		from resume_answer
+  		where res_ans_id = #{res_ans_id}
+  		<if test="res_ans_sort != 'all'">
+  		and res_ans_sort = #{res_ans_sort}
+  		</if>
+  	</select>
+  	<update id="update" parameterType="Resume">
+  		update resume_answer set
+  		res_ans_content = #{res_ans_content}
+  		where res_ans_num = #{res_ans_num}
+  	</update>
+  </mapper>

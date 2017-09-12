@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +29,15 @@
 
     <!-- Custom styles for this template -->
     <link href="css/agency.min.css" rel="stylesheet">
-
+	
+	<!-- CSS junhwan park -->
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" href="css/form-elements.css">
+	<link rel="stylesheet" href="css/style.css">
+	
+	
   </head>
 
   <body id="page-top">
@@ -41,6 +52,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
+          
+          	<!--park junhwan 세션에 loginId가 없으면  로그인, 회원가입을 할 수 있음-->
+			<c:if test="${empty loginId}">
+				<li class="nav-item"><a class="nav-link js-scroll-trigger"
+					href="#login" id="loginForm" data-toggle="modal">Login</a></li>
+				<li class="nav-item"><a class="nav-link js-scroll-trigger"
+					href="#join" id="joinForm" data-toggle="modal">Join</a></li>
+			</c:if>
+			<!-- 세션에 loginId가  있으면 개인정보수정, 로그아웃, 자기소개서 작성을 할 수 있음 -->
+			<c:if test="${not empty loginId}">
+				<li class="nav-item"><a class="nav-link js-scroll-trigger"
+					href="#update" id="updateForm">Update</a></li>
+				<li class="nav-item"><a class="nav-link js-scroll-trigger"
+					href="#logout" id="logout">Logout</a></li>
+				<li class="nav-item"><a class="nav-link js-scroll-trigger"
+					href="#resume" id="resumeForm">Resume</a></li>
+			</c:if>
+			
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#services">Services</a>
             </li>
@@ -60,7 +89,112 @@
         </div>
       </div>
     </nav>
+	
+	<!-- parkjunhwan 회원가입 8/29 -->
+	<div class="modal fade" id="joinModal">
+		<div class="container col-sm-3">
+			<div class="modal-dialog">
+				<div class="row">
+					<div class="form-box">
+						<div class="form-top">
+							<div class="form-top-left">
+								<h3>Sign up now</h3>
+								<p>Fill in the form below to get instant access:</p>
+							</div>
+							<div class="form-top-right">
+								<i class="fa fa-pencil"></i>
+							</div>
+						</div>
+						<div class="form-bottom">
+							<form role="form" action="join" method="post" class="join-form">
+								<div class="form-group">
+									<label class="sr-only" for="form-id">id</label> <strong
+										id="idCheck" result="false"> </strong> <input type="text"
+										name="id" placeholder="id..." class="form-id form-control"
+										id="joinForm-id">
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="form-password">password</label> <strong
+										id="passwordCheck" result="false"> </strong> <input
+										type="password" name="password" placeholder="password..."
+										class="form-password form-control" id="joinForm-password">
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="form-password">password-check</label>
+									<strong id="passwordCheck2" result="false"> </strong> <input
+										type="password" placeholder="password check..."
+										class="form-password form-control" id="joinForm-password2">
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="form-name">name</label> <strong
+										id="nameCheck" result="false"> </strong> <input type="text"
+										name="name" placeholder="name..."
+										class="form-name form-control" id="joinForm-name">
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="form-email">Email</label> <strong
+										id="emailCheck" result="false"> </strong> <input type="text"
+										name="email" placeholder="Email..."
+										class="form-email form-control" id="joinForm-email">
+								</div>
+								<div class="form-group">
+									<button type="submit" class="btn" id="submitBtn">Sign
+										me up!</button>
+								</div>
+								<div class="form-group">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal" id="closeBtn">Close</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<!-- parkjunhwan 로그인 8.29  -->
+	<div class="modal fade" id="loginModal">
+		<div class="container col-sm-3">
+			<div class="modal-dialog">
+				<div class="row">
+					<div class="form-box">
+						<div class="form-top">
+							<div class="form-top-left">
+								<h3>Login to our site</h3>
+								<p>Enter username and password to log on:</p>
+							</div>
+							<div class="form-top-right">
+								<i class="fa fa-lock"></i>
+							</div>
+						</div>
+						<div class="form-bottom">
+							<form role="form" action="login" method="post" class="login-form">
+								<div class="form-group">
+									<label class="sr-only" for="form-idd">UserId</label> <input
+										type="text" name="id" placeholder="id..."
+										class="form-id form-control" id="loginForm-id">
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="form-password">Password</label> <input
+										type="password" name="password" placeholder="Password..."
+										class="form-password form-control" id="loginForm-password">
+								</div>
+								<div class="form-group">
+									<button type="submit" class="btn" id="loginBtn">login!</button>
+								</div>
+								<div class="form-group">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Close</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
     <!-- Header -->
     <header class="masthead">
       <div class="container">
@@ -556,7 +690,278 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/agency.min.js"></script>
+	
+	<!-- parkjunhwan -->
+	<!-- Javascript -->
+	<script src="js/jquery.backstretch.js"></script>
+	<script src="js/scripts.js"></script>
+	
+	
+	<!-- park jun hwan 회원가입, 로그인,유효성 검사및 페이지 이동 -->
+	<script>
+  	
+	$(function(){
+	    
+		/* check값을 초기화함 */
+		$("#submitBtn").click(submitCheck);
+		$("#closeBtn").click(removeClass);
+		
+		/* 로그인창 띄움  */
+		$("#loginForm").click(function(){
+	        $("#loginModal").modal("show");
+	    });
+		$("#loginBtn").click(loginCheck);
+		
+	    /* 회원가입창 띄움 */
+		$("#joinForm").click(function(){
+	        $("#joinModal").modal("show");
+	    });
+	    
+		/* $("#joinBtn").click(joinCheck); */
+		$("#joinForm-id").keyup(idCheck);
+		$("#joinForm-password").keyup(passwordCheck);
+		$("#joinForm-password2").keyup(passwordCheck2);
+		$("#joinForm-name").keyup(nameCheck);
+		$("#joinForm-email").keyup(emailCheck);
+		
+		
+		/* 로그아웃  */
+		$("#logout").click(function(){
+			location.href="logout";
+		});
+		
+		/* 회원정보 수정  */
+		$("#updateForm").click(function(){
+			location.href="update";
+		});
+	
+		$("#resumeForm").click(function(){
+			location.href="resume";
+		});
+		
+	});
+	
+	function removeClass(){
+		
+		var joinForm = $("#joinForm");
+		$("#joinForm-id").val("");
+		$("#joinForm-password").val("");
+		$("#joinForm-password2").val("");
+		$("#joinForm-name").val("");
+		$("#joinForm-email").val("");
+		
+		var idCheck = $("#idCheck");
+		var passwordCheck = $("#passwordCheck");
+		var passwordCheck2 = $("#passwordCheck2");
+		var nameCheck = $("#nameCheck");
+		var emailCheck = $("#emailCheck");
+		
+		idCheck.html("");
+		idCheck.removeClass("text-warning");
+		idCheck.removeClass("text-primary");
+		idCheck.attr("result", "");
+		
+		passwordCheck.html("");
+		passwordCheck.removeClass("text-warning");
+		passwordCheck.removeClass("text-primary");
+		passwordCheck.attr("result", "");
+		
+		passwordCheck2.html("");
+		passwordCheck2.removeClass("text-warning");
+		passwordCheck2.removeClass("text-primary");
+		passwordCheck2.attr("result", "");
+		
+		nameCheck.html("");
+		nameCheck.removeClass("text-warning");
+		nameCheck.removeClass("text-primary");
+		nameCheck.attr("result", "");
+		
+		emailCheck.html("");
+		emailCheck.removeClass("text-warning");
+		emailCheck.removeClass("text-primary");
+		emailCheck.attr("result", "");
+	}
+	
+	function loginCheck(){
+		
+		var id = $("#loginForm-id").val();
+		var password = $("#loginForm-password").val();
+		
+		var data = {"id":id , "password": password};
+		
+	 	$.ajax({
+			
+			url : "userCheck"
+			, method : "post"
+			, data : data
+			, success : loginResult
+		})
+	}
+	
+	function loginResult(resp){
 
+		if(resp =='success') {
+			
+			alert("로그인 성공하였습니다.");
+			return true;
+		}
+		alert("아이디와 비밀번호가 잘못되었습니다. 다시 로그인해주세요");
+		return false;
+	}
+	
+	function idCheck(){
+		
+		var id = $("#joinForm-id").val();
+		
+		var idCheck = $("#idCheck");
+		
+		if(id.length < 4 || id.length > 10){
+			
+			idCheck.removeClass("text-primary");
+			idCheck.attr("result", "false");
+			idCheck.addClass("text-warning");
+			idCheck.html("아이디는 4~10 자리입니다.");
+			
+			return false;
+		}
+		
+		var data = {"id":id};
+		
+		$.ajax({
+			
+			url : "userCheck"
+			, method : "post"
+			, data : data
+			, success : idResult
+		})
+	}
+	
+	function idResult(resp){
+		
+		var idCheck = $("#idCheck");
+		
+		if(resp =='success'){
+			
+			idCheck.removeClass("text-primary");
+			idCheck.html("이 아이디는 사용할 수 없습니다.").attr("class","text-warning");
+			idCheck.attr("result", "false");
+		}
+		
+		if(resp =="failure"){
+			idCheck.removeClass("text-warning");
+			idCheck.removeClass("text-primary");
+			idCheck.html("이 아이디를 사용할 수 있습니다.").attr("class","text-primary");
+			idCheck.attr("result", "true");
+		}
+	}
+	
+	function passwordCheck(){
+		
+		var password = $("#joinForm-password").val();
+		var passwordCheck = $("#passwordCheck");
+		
+		if(password.length < 5 || password.length > 12){
+			
+			passwordCheck.removeClass("text-primary");
+			passwordCheck.attr("result", "false");
+			passwordCheck.addClass("text-warning");
+			passwordCheck.html("비밀번호는 5~12자리 입니다.");
+		
+		} else {
+			
+			passwordCheck.removeClass("text-warning");
+			passwordCheck.attr("result", "true");
+			passwordCheck.addClass("text-primary");
+			passwordCheck.html("이 비밀번호는 사용 할 수 있습니다.");
+		
+		}
+		
+		passwordCheck2();
+	}
+	
+	function passwordCheck2(){
+		
+		var password = $("#joinForm-password").val();
+		var password2 = $("#joinForm-password2").val();
+		var passwordCheck2 = $("#passwordCheck2");
+		
+		if(password != password2){
+			
+			passwordCheck2.removeClass("text-primary");
+			passwordCheck2.attr("result", "false");
+			passwordCheck2.addClass("text-warning");
+			passwordCheck2.html("비밀번호와 일치 하지 않습니다.");
+		
+		} else {
+			
+			passwordCheck2.removeClass("text-warning");
+			passwordCheck2.attr("result", "true");
+			passwordCheck2.addClass("text-primary");
+			passwordCheck2.html("비밀번호와 일치 합니다.");
+		}
+	}
+	
+	function nameCheck(){
+		
+		var name = $("#joinForm-name").val();
+		var nameCheck = $("#nameCheck");
+		
+		if(name.length < 3 || name.length > 20){
+			
+			nameCheck.removeClass("text-primary");
+			nameCheck.attr("result", "false");
+			nameCheck.addClass("text-warning");
+			nameCheck.html("이름은 3~ 20글자입니다.");
+			
+		} else {
+			
+			nameCheck.removeClass("text-warning");
+			nameCheck.attr("result", "true");
+			nameCheck.html("");
+			
+		}
+	}
+	
+	function emailCheck(){
+		
+		var email = $("#joinForm-email").val();
+		var emailCheck = $("#emailCheck");
+		
+		if(email.length < 8 || email.legnth > 30){
+			
+			emailCheck.removeClass("text-primary");
+			emailCheck.attr("result", "false");
+			emailCheck.addClass("text-warning");
+			emailCheck.html("이름은 8~ 20글자입니다.");
+			
+		} else {
+			
+			emailCheck.removeClass("text-warning");
+			emailCheck.attr("result", "true");
+			emailCheck.html("");
+		}
+	}
+	
+	function submitCheck(){
+		
+		var idCheck = $("#idCheck").attr("result");
+		var passwordCheck = $("#passwordCheck").attr("result");
+		var emailCheck = $("#emailCheck").attr("result");
+		var nameCheck = $("#nameCheck").attr("result");
+		var password2Check = $("#passwrod2CheckCheck").attr("result");
+		var joinForm = $(".join-form");
+		
+		if(idCheck == "false" || passwordCheck == "false" || emailCheck == "false" || password2Check == "false" || nameCheck == "false"){
+			
+			alert("항목을 제대로 입력해주세요");
+			
+			return false;
+		}
+		alert("회원 가입을 성공 하셨습니다.");
+		
+	}
+	
+	</script>
   </body>
 
 </html>
