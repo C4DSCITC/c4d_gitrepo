@@ -25,6 +25,13 @@
 	<resources location="/resources/assets/" mapping="/assets/**" />
 	<resources location="/resources/assets/" mapping="/assets2/**" />
 	
+<<<<<<< HEAD
+=======
+	<!-- 20170912 junhwan park -->
+	<resources location="/resources/ico/" mapping="/ico/**" />
+	<resources location="/resources/assets/" mapping="/assets3/**"/>
+	
+>>>>>>> branch 'master' of https://github.com/C4DSCITC/c4d_gitrepo.git
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />

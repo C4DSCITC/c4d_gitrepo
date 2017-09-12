@@ -8,7 +8,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+<<<<<<< HEAD
     <title>C4D - cv start</title>
+=======
+    <title>C4D cv start</title>
+>>>>>>> branch 'master' of https://github.com/C4DSCITC/c4d_gitrepo.git
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

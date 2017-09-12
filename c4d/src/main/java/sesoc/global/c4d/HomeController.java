@@ -30,6 +30,7 @@ public class HomeController {
 	}
 	
 	//로그인 테스트용 준환이 코드 오면 지울 예정
+<<<<<<< HEAD
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login(){
 		return "login";
@@ -49,5 +50,26 @@ public class HomeController {
 		
 		return "redirect:/";
 	}
+=======
+	/*@RequestMapping(value = "login", method = RequestMethod.GET)
+	public String login(){
+		return "login";
+	}*/
+	
+	//로그인테스트용 준환이 코드 오면 지울 예정
+	/*@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String login(String id, String password, HttpSession session){
+		CvDAO  dao = ss.getMapper(CvDAO.class);
+		Map<String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("password", password);
+		User user = dao.loginOne(map);
+		System.out.println("☆"+user);
+		session.setAttribute("id", user.getId());
+		session.setAttribute("name", user.getName());
+		
+		return "redirect:/";
+	}*/
+>>>>>>> branch 'master' of https://github.com/C4DSCITC/c4d_gitrepo.git
 	
 }

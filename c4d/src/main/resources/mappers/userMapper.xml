@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sesoc.global.c4d.dao.UserDao">
+	<select id="selectOne" parameterType="User" resultType="User">
+		select *
+		from users
+		where id=#{id} 
+		<if test="password != null">
+		and password=#{password}
+		</if>
+	</select>
+	<insert id="insert" parameterType="User">
+		insert into users
+		(
+			id, password, name, email
+		)
+		values
+		(
+			#{id}, #{password}, #{name}, #{email}
+		)
+	</insert>
+	<update id="update" parameterType="User">
+		update users set
+		id = #{id}
+		<if test="birthdate != null">
+			, birthdate = #{birthdate}
+		</if>
+		<if test="address != null">
+			, address = #{address}
+		</if>
+		<if test="tel != null">
+			, tel = #{tel}
+		</if>
+		<if test="gender != null">
+			, gender = #{gender}
+		</if>
+		<if test="field != null">
+			, field = #{field}
+		</if>
+		<if test="language != null">
+			, language = #{language}
+		</if>
+		<if test="age != null">
+			, age = #{age}
+		</if>
+		<if test="image != null">
+			, image = #{image}
+		</if>
+		where id = #{id}
+	</update>
+</mapper>
